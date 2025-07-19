@@ -21,14 +21,13 @@
 ## 🚀 如何开始？(极速上手指南)
 
 <details>
- 
- <summary><b></b>### 1. 搭建教程</b></summary>
+ <summary><b>1. 搭建教程</b></summary>
 
-**给超级电脑小白/懒鬼：**
+* **给超级电脑小白/懒鬼：**
 如果你什么都不会，可以通过fount runner运行它。
 你只需要[下载exe文件]( https://github.com/steve02081504/fount/releases/download/runner-v0.0.0.1/fount.exe )，随后点击运行即可。
 
-**给一般人：**
+* **给一般人：**
 首先 和酒馆不同，fount依赖于deno而不是nodejs
 所以fount的启动脚本会在启动后未找到deno时自行安装deno
 
@@ -42,13 +41,14 @@
 进入后你会看到类似这样的页面，点击输入用户名和密码来创建一个账户，**其所有内容都存储在本地，数据会随着fount的删除而丢失**。
 点击发送验证码后你的fount终端（就是那个黑框框）处会显示验证码内容，输入进去即可。
 没有验证码就不用输入。
+<img width="923" height="728" alt="image" src="https://github.com/user-attachments/assets/3073d736-3ee5-418e-b191-55f652cfaa32" />
 
 ---
 **以下为该搭建教程的~~不负责佛系扫盲~~**
 
-***预演***：在真正执行一个从网上下载的脚本之前，先把它下载到本地的一个变量里，让用户有机会检查一下脚本内容，确认安全无误之后，再手动运行它。
+* ***预演***：在真正执行一个从网上下载的脚本之前，先把它下载到本地的一个变量里，让用户有机会检查一下脚本内容，确认安全无误之后，再手动运行它。
 
-***[CAUTION]***：警告的意思。在该搭建教程里是提醒你注意fount可以原生执行JavaScript脚本，即可以直接操作你的电脑
+* ***[CAUTION]***：警告的意思。在该搭建教程里是提醒你注意fount可以原生执行JavaScript脚本，即可以直接操作你的电脑
 
 遇到任何问题，或仍然有疑问，**[欢迎加入我们的Discord群组！](https://discord.gg/sKdutkWQgt)**
 </details>
@@ -65,20 +65,20 @@
 
 
 ---
-以下是我个人在此过程出现过的一些问题与解决方法
+## 以下是我个人在此过程出现过的一些问题与解决方法
 
-__**❓导入角色后没有显示/运行时终端爆红**__
-
-首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
-
-__**❓打不开Microsoft Store下载Windows terminal**__
-
-使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
-或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
-
-__**❓安装terminal时出现以下提示**__
-
-去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。
+| **❓导入角色后没有显示/运行时终端爆红**|
+|---|
+|首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell|
+|---|
+|* **❓打不开Microsoft Store下载Windows terminal**|
+|---|
+|使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
+或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）|
+|---|
+|* **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**|
+|---|
+|去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。|
 
 <img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
 
