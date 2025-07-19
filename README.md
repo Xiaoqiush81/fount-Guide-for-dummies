@@ -1,5 +1,5 @@
 # fount 白痴手册 (Fount Guide for Dummies)
-一份基于我个人经验与现有教程的细化版本，旨在帮助新手更快地上手并入门fount，包含搭建教程，使用注意事项与报错自查，由于我本人并不了解程序和编程，所以会在教程下方补充黑话之类的扫盲，该手册在我脱坑前也会一直持续更新。**禁转类脑/方舟，转发时注明作者即可，其他随意**
+一份基于我个人经验与现有教程的细化版本，旨在帮助新手更快地上手并入门fount，包含基础的搭建教程，使用注意事项与报错自查，由于我本人并不了解程序和编程，所以会在教程下方补充黑话之类的扫盲，该手册在我脱坑前也会一直持续更新。**禁转类脑/方舟，转发时注明作者即可，其他随意**
 
 
 ---
@@ -20,8 +20,27 @@
 
 ## 🚀 如何开始？(极速上手指南)
 
-### 1. 搭建教程
-详情参照[搭建教程](https://github.com/steve02081504/fount/blob/master/docs/Readme.zh-CN.md#%E5%AE%89%E8%A3%85%E5%B0%86-fount-%E7%BC%96%E7%BB%87%E5%85%A5%E4%BD%A0%E7%9A%84%E4%B8%96%E7%95%8C--%E6%AF%AB%E4%B8%8D%E8%B4%B9%E5%8A%9B)
+<details>
+  <summary>### 1. 搭建教程</summary>
+
+**给超级电脑小白/懒鬼：**
+如果你什么都不会，可以通过fount runner运行它。
+你只需要[下载exe文件]( https://github.com/steve02081504/fount/releases/download/runner-v0.0.0.1/fount.exe )，随后点击运行即可。
+
+**给一般人：**
+首先 和酒馆不同，fount依赖于deno而不是nodejs
+所以fount的启动脚本会在启动后未找到deno时自行安装deno
+
+如果需要，你可以参照[deno的官方文档]( https://docs.deno.com/runtime/getting_started/installation/ )进行deno的自定义安装
+
+完成安装deno后，如果你会git则可以考虑使用git来clone [fount的repo](https://github.com/steve02081504/fount/)
+如果你不会，[点击这里下载最新版的fount]( https://github.com/steve02081504/fount/archive/refs/heads/master.zip )，fount会自动安装git并在未来每次启动时自动检查和下载更新
+
+如果你懒得用git，在终端中输入命令也可以运行fount，详见[终端搭建教程](https://github.com/steve02081504/fount/blob/master/docs/Readme.zh-CN.md#%E5%AE%89%E8%A3%85%E5%B0%86-fount-%E7%BC%96%E7%BB%87%E5%85%A5%E4%BD%A0%E7%9A%84%E4%B8%96%E7%95%8C--%E6%AF%AB%E4%B8%8D%E8%B4%B9%E5%8A%9B)
+
+进入后你会看到类似这样的页面，点击输入用户名和密码来创建一个账户，**其所有内容都存储在本地，数据会随着fount的删除而丢失**。
+点击发送验证码后你的fount终端（就是那个黑框框）处会显示验证码内容，输入进去即可。
+没有验证码就不用输入。
 
 ---
 **以下为该搭建教程的~~不负责佛系扫盲~~**
@@ -31,22 +50,29 @@
 ***[CAUTION]***：警告的意思。在该搭建教程里是提醒你注意fount可以原生执行JavaScript脚本，即可以直接操作你的电脑
 
 遇到任何问题，或仍然有疑问，**[欢迎加入我们的Discord群组！](https://discord.gg/sKdutkWQgt)**
-
+</details>
 ---
 ### 2. 角色导入
-详情参照[角色导入教程](https://discord.com/channels/1288934771153440768/1302581938657431622/1332720852223131729)
+
+当我们进入fount后你会看到类似这样的角色选择页面，刚开始是没有角色的，莫慌，看到右上角的那个菜单按钮了吗？点它就会出现功能界面！
+<img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/40111044-27f9-4800-a038-26dc61b37f65" />
+
+在导入中我们有两种导入方式，一种是上传已下载的fount角色（zip档案）或酒馆角色（png，json档案）
+另一种是右边的文字导入，我们可以粘贴角色网址（github网址、chub网址或risurlm网址），每行一个，随后批量导入！
+<img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/df584df6-68c1-4a73-bd13-03cb17e3e2d2" />
+
 
 ---
 以下是我个人在此过程出现过的一些问题与解决方法
 
 __**❓导入角色后没有显示/运行时终端爆红**__
 
-首先刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
+首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
 
 __**❓打不开Microsoft Store下载Windows terminal**__
 
 使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
-或者去terminal的github页面[下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
+或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
 
 __**❓安装terminal时出现以下提示**__
 
