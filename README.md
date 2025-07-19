@@ -1,5 +1,5 @@
 # fount 白痴手册 (Fount Guide for Dummies)
-一份基于我个人经验与现有教程的细化版本，旨在帮助新手更快地上手并入门fount，包含搭建教程，使用注意事项与报错自查，由于我本人并不了解程序和编程，所以会在教程下方补充黑话之类的扫盲，该手册在我脱坑前也会一直持续更新。禁转类脑/方舟，转发时注明作者即可，其他随意
+一份基于我个人经验与现有教程的细化版本，旨在帮助新手更快地上手并入门fount，包含搭建教程，使用注意事项与报错自查，由于我本人并不了解程序和编程，所以会在教程下方补充黑话之类的扫盲，该手册在我脱坑前也会一直持续更新。**禁转类脑/方舟，转发时注明作者即可，其他随意**
 
 
 ---
@@ -23,8 +23,8 @@
 ### 1. 搭建教程
 详情参照[搭建教程](https://github.com/steve02081504/fount/blob/master/docs/Readme.zh-CN.md#%E5%AE%89%E8%A3%85%E5%B0%86-fount-%E7%BC%96%E7%BB%87%E5%85%A5%E4%BD%A0%E7%9A%84%E4%B8%96%E7%95%8C--%E6%AF%AB%E4%B8%8D%E8%B4%B9%E5%8A%9B)
 
-
-以下为该搭建教程的-~~不负责佛系扫盲~~
+---
+**以下为该搭建教程的-~~不负责佛系扫盲~~**
 
 ***预演***：在真正执行一个从网上下载的脚本之前，先把它下载到本地的一个变量里，让用户有机会检查一下脚本内容，确认安全无误之后，再手动运行它。
 
@@ -45,8 +45,8 @@ __**❓导入角色后没有显示/运行时终端爆红**__
 
 __**❓打不开Microsoft Store下载Windows terminal**__
 
-使用浏览器的地址栏打开这个**[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)**
-或者去terminal的github页面**[下载](https://github.com/microsoft/terminal/releases)**，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
+使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
+或者去terminal的github页面[下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
 
 __**❓安装terminal时出现以下提示**__
 
