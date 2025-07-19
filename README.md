@@ -64,7 +64,7 @@
 
 ---
 <details>
- <summary><b>2. 角色导入</b><summary/>
+ <summary><b>2. 角色导入</b></summary>
 
 当我们进入fount后你会看到类似这样的角色选择页面，刚开始是没有角色的，莫慌，看到右上角的那个菜单按钮了吗？点它就会出现功能界面！
 <img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/40111044-27f9-4800-a038-26dc61b37f65" />
@@ -73,24 +73,51 @@
 另一种是右边的文字导入，我们可以粘贴角色网址（github网址、chub网址或risurlm网址），每行一个，随后批量导入！
 <img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/df584df6-68c1-4a73-bd13-03cb17e3e2d2" />
 
+---
+以下是我个人在此过程出现过的一些问题与解决方法
+ 
+ * **❓导入角色后没有显示/运行时终端爆红**
+
+ 首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
+
+* **❓打不开Microsoft Store下载Windows terminal**
+
+使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
+或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
+
+* **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**
+
+去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。
+
+<img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
+</details>
 
 ---
-## 以下是我个人在此过程出现过的一些问题与解决方法
-| **❓导入角色后没有显示/运行时终端爆红**|
+<details>
+ <summary><b>3. 配置AI源</b></summary>
+ 
+到此为止我们完成了用户的创建和角色的导入，现在我们假设你有了一个**需要AI源**来运行的角色。
+让我们试着配置AI源！
+fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](cohere.com)，如果你没有他们的API Key，可以直接点击链接跳转获取，如果你有这两个模型的官方API key，可以通过以下方式来添加它，现在我以Gemini举例：
+* 在主页右上角选择管理ai源
+<img width="395" height="290" alt="image" src="https://github.com/user-attachments/assets/dc165e64-0805-4dc2-9469-475409212f35" />
 
-|首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell|
+然后点击"+"新建一个AI源，生成器选择"gemini"，此时系统会提示你新建一个AI源名称，这个名称无特定标准，自行填写即可，继续以我这里填写的“Gemini”为例，记得不要包含后缀
+ <img width="832" height="209" alt="image" src="https://github.com/user-attachments/assets/9dc1a6b9-701d-4463-9f2b-1277384c08fc" />
+ 
+* 然后在左侧的json文件中，将你的API Key填写在第3行的`apikey`，在第4行的`model`填写正确的模型名，例如我使用的是gemini-2.5-pro，不清楚模型名的请自行查询（注意模型名一定要确认正确填写噢），第一行的`name`与你实际调用的模型无关，随意填写即可，它只会影响在后台出现的调用AI源的名称，其他的地方在无特殊要求和情况下保持默认即可
+<img width="1251" height="735" alt="image" src="https://github.com/user-attachments/assets/df529196-22f2-4e0b-8746-807b281ac2a8" />
 
-|* **❓打不开Microsoft Store下载Windows terminal**|
+这样一个新的AI来源便创建好了！
+如果你的AI不是来自cohere或gemini也不要慌，fount也支持任何Open AI格式的自定义来源，我们只需要在"选择生成器"里更换成proxy
 
-|使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
-或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）|
+<img width="232" height="359" alt="image" src="https://github.com/user-attachments/assets/ea7716fa-cd08-4d99-86d1-46e288c80e38" />
 
-|* **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**|
+这里我以deepseek举例，在“选择生成器”里选择proxy，然后在左侧的json文件按照如图填写，如果你也想配置deepseek，url和model可以直接复制我的，然后把`apikey`替换成你自己的key
+。此处顺便附赠链接[获取deepseek的API](platform.deepseek.com)
+<img width="949" height="550" alt="image" src="https://github.com/user-attachments/assets/8960d234-0f43-4198-8124-d344b7c1bc45" />
 
-|去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。|
-
-|<img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />|
-<details/>
+</details>
 
 
 
