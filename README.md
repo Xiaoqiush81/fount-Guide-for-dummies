@@ -63,8 +63,8 @@
 </details>
 
 ---
-
-<summary><b>2. 角色导入</b><summary/>
+<details>
+ <summary><b>2. 角色导入</b><summary/>
 
 当我们进入fount后你会看到类似这样的角色选择页面，刚开始是没有角色的，莫慌，看到右上角的那个菜单按钮了吗？点它就会出现功能界面！
 <img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/40111044-27f9-4800-a038-26dc61b37f65" />
