@@ -50,11 +50,21 @@
 
 * ***[CAUTION]***：警告的意思。在该搭建教程里是提醒你注意fount可以原生执行JavaScript脚本，即可以直接操作你的电脑
 
+* ***deno或nodejs***：代码的“运行环境”。它们是能让电脑读懂并运行特定程序（比如fount）的必要软件。可以理解为，fount是游戏，deno就是运行这个游戏所必须的平台或启动器。
+
+* ***git***：一个专业的“文件历史记录工具”。它能追踪一个项目里所有文件的每一次修改，方便开发者随时查看历史版本、撤销错误操作或与他人合作。
+
+* ***repo***：repository（仓库）的简称。在GitHub这类网站上，一个repo就代表一个项目的完整文件夹，里面存放着该项目的所有代码和文件。
+
+* ***git clone***：一个命令，作用是“完整地复制一个repo”，clone即克隆、复制的意思。执行这个命令，就会把服务器上整个项目的文件夹（包括所有历史记录）下载到你自己的电脑里。
+
+
 遇到任何问题，或仍然有疑问，**[欢迎加入我们的Discord群组！](https://discord.gg/sKdutkWQgt)**
 </details>
 
 ---
-### 2. 角色导入
+<details>
+<summary><b>2. 角色导入</b><summary/>
 
 当我们进入fount后你会看到类似这样的角色选择页面，刚开始是没有角色的，莫慌，看到右上角的那个菜单按钮了吗？点它就会出现功能界面！
 <img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/40111044-27f9-4800-a038-26dc61b37f65" />
@@ -66,21 +76,21 @@
 
 ---
 ## 以下是我个人在此过程出现过的一些问题与解决方法
-
 | **❓导入角色后没有显示/运行时终端爆红**|
-|---|
+
 |首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell|
-|---|
+
 |* **❓打不开Microsoft Store下载Windows terminal**|
-|---|
+
 |使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
 或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）|
-|---|
+
 |* **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**|
-|---|
+
 |去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。|
 
-<img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
+|<img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />|
+<details/>
 
 
 
