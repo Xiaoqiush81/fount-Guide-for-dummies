@@ -21,7 +21,7 @@
 ## 🚀 如何开始？(极速上手指南)
 
 <details>
-  <summary>### 1. 搭建教程</summary>
+ <summary>**1. 搭建教程**</summary>
 
 **给超级电脑小白/懒鬼：**
 如果你什么都不会，可以通过fount runner运行它。
@@ -51,6 +51,7 @@
 
 遇到任何问题，或仍然有疑问，**[欢迎加入我们的Discord群组！](https://discord.gg/sKdutkWQgt)**
 </details>
+
 ---
 ### 2. 角色导入
 
