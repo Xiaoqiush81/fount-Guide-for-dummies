@@ -28,8 +28,7 @@
 你只需要[下载exe文件]( https://github.com/steve02081504/fount/releases/download/runner-v0.0.0.1/fount.exe )，随后点击运行即可。
 
 * **给一般人：**
-首先 和酒馆不同，fount依赖于deno而不是nodejs
-所以fount的启动脚本会在启动后未找到deno时自行安装deno
+首先，和酒馆不同，fount依赖于deno而不是nodejs，所以fount的启动脚本会在启动后未找到deno时自行安装deno
 
 如果需要，你可以参照[deno的官方文档]( https://docs.deno.com/runtime/getting_started/installation/ )进行deno的自定义安装
 
@@ -102,7 +101,7 @@ fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](coher
 * 在主页右上角选择管理ai源
 <img width="395" height="290" alt="image" src="https://github.com/user-attachments/assets/dc165e64-0805-4dc2-9469-475409212f35" />
 
-然后点击"+"新建一个AI源，生成器选择"gemini"，此时系统会提示你新建一个AI源名称，这个名称无特定标准，自行填写即可，继续以我这里填写的“Gemini”为例，记得不要包含后缀
+然后点击"+"新建一个AI源，生成器选择"gemini"，此时系统会提示你新建一个AI源名称，这个名称无特定标准，自行填写即可，继续以我这里填写的“Gemini”为例，**(后续系统自动把Gemini变成gemini了，所以这里的AI源名称实际是gemini)**，记得不要包含后缀
  <img width="832" height="209" alt="image" src="https://github.com/user-attachments/assets/9dc1a6b9-701d-4463-9f2b-1277384c08fc" />
  
 * 然后在左侧的json文件中，将你的API Key填写在第3行的apikey，在第4行的model填写正确的模型名，例如我使用的是gemini-2.5-pro，不清楚模型名的请自行查询（注意模型名一定要确认正确填写噢），第一行的`name`与你实际调用的模型无关，随意填写即可，它只会影响在后台出现的调用AI源的名称，其他的地方在无特殊要求和情况下保持默认即可
