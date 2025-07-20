@@ -149,11 +149,12 @@ fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](coher
 * ***other_datas (其他数据)***：其他各种杂项设置，比如它的“通行证”(API Key)或者“家庭住址”(API地址)之类的，都可以塞在这里。
 
 ---
-因为 polling 本身只是一个“团队工作模式”，只是一个fount的AI源生成器，而不是某一个具体的AI，所以这里provider填写"unknown"是正常的，fount是根据"generator"来决定调用谁的。
+因为 polling 本身不是某一个具体的AI，所以这里provider填写"unknown"是正常的，fount是根据"generator"来决定调用谁的。
 
 那么根据以上的了解，我们就可以直接把Gemini相关的配置格式替换进去：
-```
-"name": "pooling array（或者换成任意你喜欢的名字）",
+```json
+{
+	"name": "pooling array",
 	"provider": "unknown",
 	"sources": [
 		{
@@ -161,6 +162,8 @@ fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](coher
 			"config": {
 				"apikey": "你的API Key",
 				"model": "具体的模型名称（比如gemini-2.5-pro）"
+			}
+		},
 ```
 复制以上的格式，然后无脑复制粘贴即可，你有多少个key就复制多少个
 
@@ -198,6 +201,9 @@ fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](coher
 这里我以龙胆举例，在对应的位置填写你之前创建的AI源的名字，**这里的AI源名称是指你新建源时取的名字，不是json文件中的"name"。**
 比如在上一步中我新建的AI源名称是"gemini"，那么就对应图中的gemini，记得替换自己的AI源，然后在你希望这个AI源应用的地方填写对应的名称即可，比如我希望调用grok来回复nsfw的内容，调用gemini来回复sfw内容
 <img width="1711" height="825" alt="image" src="https://github.com/user-attachments/assets/60471c75-0382-4c97-a1e0-2c863346be6c" />
+
+由于fount目前已经更新了设置默认AI源的功能，所以只需要在你的AI源列表给你想设置的源打上勾，这样设置了默认源后，新的角色就不需要再繁琐地重复上述填写AIsources配置的步骤，他们会自动调用这个默认源，而不需要挨个点开来填写配置。
+<img width="424" height="609" alt="image" src="https://github.com/user-attachments/assets/21ceca98-8366-487a-90dd-7f1e12e3e837" />
 
 ## 到此你已经成功为角色配置好了AI源，可以直接开始和他们聊天啦！
 </details>
