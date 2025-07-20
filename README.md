@@ -103,7 +103,7 @@
  
 到此为止我们完成了用户的创建和角色的导入，现在我们假设你有了一个**需要AI源**来运行的角色。
 让我们试着配置AI源！
-fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](cohere.com)，如果你没有他们的API Key，可以直接点击链接跳转获取，如果你不清楚Gemini的API Key的获取流程，可以参阅[哈基米API Key纯宝宝教程](https://github.com/Xiaoqiush81/Gemini-API-Key-guide)，如果你有这两个模型的官方API key，可以通过以下方式来添加它，现在我以Gemini举例：
+fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)和[cohere](https://dashboard.cohere.com/)，如果你没有他们的API Key，可以直接点击链接跳转获取，如果你不清楚Gemini的API Key的获取流程，可以参阅[哈基米API Key纯宝宝教程](https://github.com/Xiaoqiush81/Gemini-API-Key-guide)，如果你有这两个模型的官方API key，可以通过以下方式来添加它，现在我以Gemini举例：
 * 在主页右上角选择管理ai源
 <img width="395" height="290" alt="image" src="https://github.com/user-attachments/assets/dc165e64-0805-4dc2-9469-475409212f35" />
 
@@ -119,7 +119,7 @@ fount目前原生支持的AI源有[gemini](aistudio.google.com)和[cohere](coher
 <img width="232" height="359" alt="image" src="https://github.com/user-attachments/assets/ea7716fa-cd08-4d99-86d1-46e288c80e38" />
 
 这里我以deepseek举例，在“选择生成器”里选择proxy，然后在左侧的json文件按照如图填写，如果你也想配置deepseek，url和model可以直接复制我的，然后把`apikey`替换成你自己的key
-。此处顺便附赠链接[获取deepseek的API](platform.deepseek.com)
+。此处顺便附赠链接[获取deepseek的API](https://platform.deepseek.com/sign_in)
 <img width="949" height="550" alt="image" src="https://github.com/user-attachments/assets/8960d234-0f43-4198-8124-d344b7c1bc45" />
 
 * 同理，因为fount的proxy生成器支持任何Open AI格式的自定义来源，所以如果你想把在SillyTavern中使用的轮询、反代等"兼容OpenAI"的API放入fount中使用，只需把你的URL地址和密钥填入相应的位置即可，但是需要注意的是如果你想使用proxy接口连接Gemini的轮询，**fount的proxy生成器只支持接收文件而不支持发送文件**，所以可能会出现AI识图功能失灵的情况（除此之外没有任何影响），此时我们就可以选择使用fount内置的polling轮询，接下来我会以配置Gemini的polling轮询进行示范
