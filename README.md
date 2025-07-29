@@ -58,7 +58,7 @@
 * ***git clone***：一个命令，作用是“完整地复制一个repo”，clone即克隆、复制的意思。执行这个命令，就会把服务器上整个项目的文件夹（包括所有历史记录）下载到你自己的电脑里。
 
 
-遇到任何问题，或仍然有疑问，**[欢迎加入我们的Discord群组！](https://discord.gg/sKdutkWQgt)**
+**过程中如果出现了报错或其他问题，请先查看本手册的“🛠️报错自查”，仍然有疑问？[欢迎加入我们的Discord群组！](https://discord.gg/sKdutkWQgt)**
 </details>
 
 ---
@@ -72,29 +72,7 @@
 另一种是右边的文字导入，我们可以粘贴角色网址（github网址、chub网址或risurlm网址），每行一个，随后批量导入！
 <img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/df584df6-68c1-4a73-bd13-03cb17e3e2d2" />
 
----
-以下是我个人在此过程出现过的一些问题与解决方法
- 
- * **❓导入角色后没有显示/运行时终端爆红**
-
- 首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
-
-* **❓导入后角色界面出现类似下图的显示异常并伴随报错**
-
-首先尝试重启fount，重启一般能解决百分之八十的问题，其次就是VPN或者网络的问题，尝试换个网络或VPN开启全局和虚拟网卡模式。
-如果你使用的是clash或其他第三方VPN软件时出现此情况，我建议你使用[Clash rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)，原因是现有的clash for Windows基本已经停止维护和更新，所以可能会出现兼容和连接问题
-<img width="2483" height="1254" alt="image" src="https://github.com/user-attachments/assets/ad62e748-189b-4335-b0f1-276ce7edb106" />
-
-* **❓打不开Microsoft Store下载Windows terminal**
-
-使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
-或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
-
-* **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**
-
-去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。
-
-<img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
+**过程中如果出现了报错或其他问题，请先查看手册的“🛠️报错自查”，如果还有问题可以直接提出**
 </details>
 
 ---
@@ -178,6 +156,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 
 * ***pr***：即pull request，你可以把你fork的项目修改过后的版本提交给项目的负责人供其采纳
 * ***fork***：相当于把原项目完整复制到自己的仓库里，无论怎样随意修改和删除都不会影响原项目的文件，后续也可以选择将修改后的版本通过pr提交给原项目的负责人
+
 </details>
 
 ---
@@ -208,6 +187,96 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 ## 到此你已经成功为角色配置好了AI源，可以直接开始和他们聊天啦！
 </details>
 
+## 🚀 拓展应用（配置和接入bot）
+
+<details>
+<summary><b>1. 配置Discord bot</b></summary>
+
+我们已经在上一步完成了AI源的配置和创建，那么我们就可以利用fount内置的功能把任何一个角色配置成Discord bot或telegram bot，这里我以将从酒馆导入的一张角色卡（Ghost）配置discord bot举例。
+
+---
+首先点击右上角菜单选择"配置Discord bot"
+
+<img width="333" height="596" alt="image" src="https://github.com/user-attachments/assets/e83d8c4e-18b2-4d0b-afe7-66d17e937c0a" />
+
+然后新建一个bot，这里的名字没有特定要求，随便填写即可
+
+<img width="791" height="254" alt="image" src="https://github.com/user-attachments/assets/e2434ca6-27e5-486e-a9d3-e2a981c606f5" />
+
+然后我们需要到[Discord开发者平台](https://discord.com/developers/applications)去新建一个自己的bot，进入后选择"New Application"，然后输入bot的名字，需要注意的是，这个名字会作为你的bot的名字和用户名，你的bot无论是进入服务器和还是私聊显示的都是这个名字，**即你点击New Application后这个白色框框里输入的名字**，之后你也可以随时更换它
+
+<img width="767" height="428" alt="image" src="https://github.com/user-attachments/assets/dd2d51e9-3a00-4198-8769-9a0b21a100b7" />
+<img width="429" height="293" alt="image" src="https://github.com/user-attachments/assets/d5af72a3-2b53-468b-935e-fbd4be8a8f8a" />
+
+然后自行在这个界面上传头像即可，其他的内容（如description还有下面的各种URL）可以不用管，要注意的只有这个界面的`NAME`影响的是你这个bot在进入服务器后被系统自动分配的身份组的名字，而不是bot本身的名字
+<img width="1604" height="581" alt="image" src="https://github.com/user-attachments/assets/46cc7e90-b143-4d76-95cd-a24cfb83cb1d" />
+
+然后我们要在右侧选择“Bot”，获取Bot的Token，如果你没有或者不知道，直接选择Reset Token即可，这个过程一般会要求你进行验证之类的，就不再赘述，记得要保护好这个Token，它就像API key一样，一旦泄露你的bot甚至是账号都会有安全风险，然后你也可以在这里为你的bot完善信息，比如更改头像，上传主页的背景横幅（头像旁边的BANNER），或者更改你在上一步新建时在白色框框里填的名字（USERNAME），
+<img width="1920" height="667" alt="image" src="https://github.com/user-attachments/assets/87b9c820-2de6-4750-8577-8ae860099674" />
+
+然后我们在这个界面往下滑，把最下方的三个权限给打开，如果你一头雾水，也可以选择直接照搬我的设置，注意"punlic bot"这个选项是指任何人都可以直接把你的bot拉入服务器，可以自己酌情选择
+<img width="1906" height="875" alt="image" src="https://github.com/user-attachments/assets/911e1943-84ec-436c-8884-c947a6ea442e" />
+
+然后我们在拿到Token之后返回fount的配置页面，把你的Token填入“Discord API Key”，然后在下方的json文件填写对应配置，比如OwnerUserName（填你自己的Discord名字），其他配置保持默认即可，然后点击保存，启动即可
+<img width="1339" height="781" alt="image" src="https://github.com/user-attachments/assets/d7cf7272-5966-4007-a859-fa66783681c4" />
+
+下面是邀请bot进入服务器，在邀请之前你需要自己勾选对应的权限，首先点击右侧"OAuth2"，勾选bot。
+<img width="1625" height="365" alt="image" src="https://github.com/user-attachments/assets/b7be9ec2-4ec0-4dff-9fda-761540740694" />
+
+然后下滑，这里有三个是必须要勾选的，其他的自己酌情选择即可，需要注意的是如果勾选了“管理员”则相当于勾选了所有的权限，邀请bot进入服务器需要你是那个服务器的管理员才行，如果你不是可以考虑和服务器的管理员商量，如果你在这个界面勾选了你不想要的权限也没关系，你可以在邀请bot进入服务器之后修改（修改同样需要你是该服务器的管理员），点击服务器设置——身份组——找到你的bot的身份组（比如我之前填写的是Ghost，那么系统就会自动分配一个Ghost身份组）——权限，然后自行调整即可
+<img width="1901" height="930" alt="image" src="https://github.com/user-attachments/assets/775ba6fb-28d9-4288-aa2b-ee7531ec6a4a" />
+
+勾选完后继续下滑，会看到系统自动给你生成了一个链接，复制这个链接打开，把bot添加进你对应的服务器即可
+<img width="1590" height="283" alt="image" src="https://github.com/user-attachments/assets/41971530-e3e0-4db2-a109-fb5b83153839" />
+<img width="565" height="850" alt="image" src="https://github.com/user-attachments/assets/5c6002b7-132f-41aa-8f37-58fa16859e07" />
+## 到此你已经成功配置好Discord bot，可以开始在Discord上聊天啦！
+</details>
+
+<details>
+<summary><b>2. 配置telegram bot</b></summary>
+	
+这里我以配置龙胆的telegram bot为例子，首先打开右上角菜单选择配置telegram bot
+
+<img width="400" height="377" alt="image" src="https://github.com/user-attachments/assets/28d15096-1baf-4ffb-9af9-00b172e2465f" />
+
+然后新建一个bot，这里的名字没有特定要求，随意填写即可
+<img width="612" height="230" alt="image" src="https://github.com/user-attachments/assets/69bd4c14-44b1-4fa1-bb6a-940f3f10ab3b" />
+
+然后我们到登录telegram，在上面私聊[机爸](https://t.me/BotFather)，创建你的bot和获取bot token，打码的地方就是你的bot token
+<img width="690" height="695" alt="image" src="https://github.com/user-attachments/assets/dad55e2c-2bd2-491a-814b-9b52d67a41f4" />
+
+接着我们需要获取自己的user ID，也是在telegram上私聊[用户名机器人](https://t.me/usinfobot),获取自己的userID，然后返回fount，填写Bot token和对应的配置，保存，然后启动即可
+<img width="1350" height="807" alt="image" src="https://github.com/user-attachments/assets/576b220f-e5ca-4ce2-9789-12ad8d39fd18" />
+## 到此你已经成功配置好Telegram bot，可以开始在Telegram上聊天啦！
+</details>
+
+## 🛠️报错自查
+<details>
+<summary><b>各类报错自查</b></summary>
+
+ * **❓导入角色后没有显示/运行时终端爆红/搭建时终端爆乱码**
+
+ 首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
 
 
+* **❓打不开Microsoft Store下载Windows terminal**
 
+使用浏览器的地址栏打开这个[链接](ms-windows-store://pdp/?productId=9N0DX20HK701)
+或者去terminal的[github页面下载](https://github.com/microsoft/terminal/releases)，找到最新的Release，下滑到Assets，找Microsoft.WindowsTerminal_<版本号>_8wekyb3d8bbwe.msixbundle下载（有的叫.msixbundle，点大一点的那个）
+
+* **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**
+
+去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。
+
+<img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
+
+* **❓导入后角色界面出现类似下图的显示异常并伴随报错**
+
+首先尝试重启fount，重启一般能解决百分之八十的问题，其次就是VPN或者网络的问题，尝试换个网络或VPN开启全局和虚拟网卡模式，如果你使用的是gemini，那么尝试把节点换到例如日本，新加坡，美国等支持gemini服务的地区。
+如果你使用的是clash或其他第三方VPN软件时出现此情况，我建议你使用[Clash rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)，原因是现有的clash for Windows基本已经停止维护和更新，所以可能会出现兼容和连接问题
+<img width="2483" height="1254" alt="image" src="https://github.com/user-attachments/assets/ad62e748-189b-4335-b0f1-276ce7edb106" />
+
+* **❓使用gemini时出现了例如400,403之类的报错/bot一直卡在typing**
+
+bot出现了例如400,403之类的报错属于网络问题，更换节点或者网络，如果是卡在了typing，首先尝试重启fount，然后再检查网络和VPN，大部分的报错都是因为网络问题，可以参考上一条的自查步骤自行下载Clash rev
+</details>
