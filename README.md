@@ -192,7 +192,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 <details>
 <summary><b>1. 配置Discord bot</b></summary>
 
-我们已经在上一步完成了AI源的配置和创建，那么我们就可以利用fount内置的功能把任何一个角色配置成Discord bot或telegram bot，这里我以将从酒馆导入的一张角色卡（Ghost）配置discord bot举例。
+我们已经在上一步完成了AI源的配置和创建，那么我们就可以利用fount内置的功能把任何一个角色配置成Discord bot或telegram bot，这里我以一张从酒馆导入的角色卡（Ghost）配置discord bot举例。
 
 ---
 首先点击右上角菜单选择"配置Discord bot"
@@ -214,7 +214,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 然后我们要在右侧选择“Bot”，获取Bot的Token，如果你没有或者不知道，直接选择Reset Token即可，这个过程一般会要求你进行验证之类的，就不再赘述，记得要保护好这个Token，它就像API key一样，一旦泄露你的bot甚至是账号都会有安全风险，然后你也可以在这里为你的bot完善信息，比如更改头像，上传主页的背景横幅（头像旁边的BANNER），或者更改你在上一步新建时在白色框框里填的名字（USERNAME），
 <img width="1920" height="667" alt="image" src="https://github.com/user-attachments/assets/87b9c820-2de6-4750-8577-8ae860099674" />
 
-然后我们在这个界面往下滑，把最下方的三个权限给打开，如果你一头雾水，也可以选择直接照搬我的设置，注意"punlic bot"这个选项是指任何人都可以直接把你的bot拉入服务器，可以自己酌情选择
+然后我们在这个界面往下滑，把最下方的三个权限给打开，如果你一头雾水，也可以选择直接照搬我的设置，注意"public bot"这个选项是指任何人都可以直接把你的bot拉入服务器，可以自己酌情选择
 <img width="1906" height="875" alt="image" src="https://github.com/user-attachments/assets/911e1943-84ec-436c-8884-c947a6ea442e" />
 
 然后我们在拿到Token之后返回fount的配置页面，把你的Token填入“Discord API Key”，然后在下方的json文件填写对应配置，比如OwnerUserName（填你自己的Discord名字），其他配置保持默认即可，然后点击保存，启动即可
