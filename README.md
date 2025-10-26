@@ -187,7 +187,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 ## 到此你已经成功为角色配置好了AI源，可以直接开始和他们聊天啦！
 </details>
 
-## 🚀 拓展应用（配置和接入bot）
+## 🚀 拓展应用
 
 <details>
 <summary><b>1. 配置Discord bot</b></summary>
@@ -248,6 +248,92 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 接着我们需要获取自己的user ID，也是在telegram上私聊[用户名机器人](https://t.me/usinfobot),获取自己的userID，然后返回fount，填写Bot token和对应的配置，保存，然后启动即可
 <img width="1350" height="807" alt="image" src="https://github.com/user-attachments/assets/576b220f-e5ca-4ce2-9789-12ad8d39fd18" />
 ## 到此你已经成功配置好Telegram bot，可以开始在Telegram上聊天啦！
+</details>
+
+<details>
+<summary><b>3. 配置fount-pwsh</b></summary>
+	
+fount-pwsh是一个适用于powershell或[esh](https://github.com/steve02081504/esh)终端的工具，它可以帮你在终端里更好地使用fount和使用shell，或只是在终端里和角色聊天，要注意的是fount-pwsh是依赖于[fount](https://github.com/steve02081504/fount)工作的。
+
+---
+	
+* 安装fount-pwsh
+
+在终端中输入以下命令，如图，然后回车
+```
+Install-Module fount-pwsh
+```
+<img width="570" height="40" alt="image" src="https://github.com/user-attachments/assets/04205186-eb11-4957-9b44-37a45cd5f8dc" />
+
+**还没有安装fount？** 别担心，在使用以上命令安装了fount-pwsh模块后，它会在你首次使用`Start-fount`或`Set-FountAssist`或`Install-FountAssist`命令时自动帮你安装fount
+
+---
+* 配置fount-pwsh
+
+在终端里使用以下命令自动配置，然后回车。如图是以配置龙胆为助手的示例，配置后当你开启一个新的shell窗口时fount-pwsh会自动加载助手并启动
+```
+Install-FountAssist <你的 fount 用户名> <需要的角色名>
+```
+<img width="817" height="48" alt="image" src="https://github.com/user-attachments/assets/06942e51-ffb2-48c2-91e1-c9beab98ee1c" />
+
+
+## 助手什么时候会出现？
+
+fount 助手会在以下这些情况下自动出现：
+
+* 当你输入了错误的命令时 (如拼写错误)。
+* 当你运行的命令执行失败时 ($? 的值为 false)。
+* 当你主动使用 f 命令时
+---
+
+***启动助手***：`f 1`
+
+***禁用助手***：`f 0`
+
+---
+
+以下是使用助手时的预览，当命令执行失败时
+<img width="1328" height="303" alt="image" src="https://github.com/user-attachments/assets/6f9ea890-2c1e-42f2-9064-985edf020dd4" />
+
+和角色在终端里闲聊时，因为powershell不会识别文字，所以会爆红，但是不影响聊天，你也可以直接在闲聊时和助手对话帮助你更好地使用shell，直接回车就是执行命令，n就是换一个，ctrl+c取消
+<img width="1426" height="285" alt="image" src="https://github.com/user-attachments/assets/03ee6d4f-91bd-4e1a-9f2e-1e4025b7239b" />
+<img width="1451" height="349" alt="image" src="https://github.com/user-attachments/assets/98fef666-e085-4b50-a7b1-47df15aef09e" />
+
+**到此你已经成功配置好了fount-pwsh，可以在终端里更好地使用fount或只是和角色们愉快地在终端里闲聊啦！**
+</details>
+
+<details>
+<summary><b>4. 浏览器集成</b></summary>
+	
+## 浏览器集成是一个通过以fount为连接桥梁让fount角色能够和你的浏览器互动的插件。
+
+要安装这个插件，首先让我们点击fount主页右上角的菜单栏，"集成——浏览器集成"
+
+<img width="261" height="173" alt="image" src="https://github.com/user-attachments/assets/02cf3cea-11ad-420e-8652-5732cb6dec6b" />
+
+在这个页面，我们需要根据指引先安装一个油猴脚本的插件来禁用csp，在页面的底部会有链接。这里我以Chrome浏览器举例，对于这个浏览器我们除了油猴插件之外还需要按照页面的指引安装一个单独的插件来禁用csp，如图
+<img width="923" height="81" alt="image" src="https://github.com/user-attachments/assets/a17354b2-1600-4aab-be02-0827946bc216" />
+
+<img width="920" height="271" alt="image" src="https://github.com/user-attachments/assets/42d32e40-569e-485a-9e69-f97fc7db93c8" />
+
+然后需要插件图标像下图一样显示为彩色的（未开启插件会变成灰色），
+
+<img width="254" height="299" alt="image" src="https://github.com/user-attachments/assets/699c1b44-2917-4605-826e-711924434cda" />
+
+在安装好油猴插件之后，点击"安装"，如果浏览器提示安装失败，就需要复制页面提供的URL进行手动导入，如图所示在插件的"实用工具"里，在最下方将url填入后点击安装即可
+
+<img width="1917" height="803" alt="image" src="https://github.com/user-attachments/assets/2709fbbe-6284-4064-a2fb-41e349046560" />
+
+在完成后记得要打开浏览器集成插件
+
+<img width="368" height="336" alt="image" src="https://github.com/user-attachments/assets/e5022ff5-3b39-4804-8bc9-41fca560be48" />
+
+之后在我们的浏览器集成页面会显示我们连接了哪些网页，如图所示，如果遇到有打开了的网页但是没有显示在已连接名单中的情况，刷新一下页面即可。
+
+<img width="911" height="593" alt="image" src="https://github.com/user-attachments/assets/3758960e-1cfb-4925-83d8-84f3b38c5728" />
+
+
+**到此你已经成功安装好了浏览器集成插件，可以让你的fount角色们通过它和你的浏览器进行交互啦！**
 </details>
 
 ## 🛠️报错自查
