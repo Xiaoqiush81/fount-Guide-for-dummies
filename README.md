@@ -311,7 +311,7 @@ fount 助手会在以下这些情况下自动出现：
 
 <img width="261" height="173" alt="image" src="https://github.com/user-attachments/assets/02cf3cea-11ad-420e-8652-5732cb6dec6b" />
 
-在这个页面，我们需要根据指引先安装一个油猴脚本的插件来禁用csp，在页面的底部会有链接。这里我以Chrome浏览器举例，对于这个浏览器我们除了油猴插件之外还需要按照页面的指引安装一个单独的插件来禁用csp，如图
+点击后会跳转到浏览器集成相关的页面，在这个页面，我们需要根据指引先安装一个油猴脚本的插件来禁用csp，在页面的底部会有链接。这里我以Chrome浏览器举例，对于这个浏览器我们除了油猴插件之外还需要按照页面的指引安装一个单独的插件来禁用csp，如图
 <img width="923" height="81" alt="image" src="https://github.com/user-attachments/assets/a17354b2-1600-4aab-be02-0827946bc216" />
 
 <img width="920" height="271" alt="image" src="https://github.com/user-attachments/assets/42d32e40-569e-485a-9e69-f97fc7db93c8" />
@@ -320,7 +320,7 @@ fount 助手会在以下这些情况下自动出现：
 
 <img width="254" height="299" alt="image" src="https://github.com/user-attachments/assets/699c1b44-2917-4605-826e-711924434cda" />
 
-在安装好油猴插件之后，点击"安装"，如果浏览器提示安装失败，就需要复制页面提供的URL进行手动导入，如图所示在插件的"实用工具"里，在最下方将url填入后点击安装即可
+在安装好油猴插件之后，返回浏览器集成页面，点击"安装"，如果浏览器提示安装失败，就需要复制页面提供的URL进行手动导入，如图所示在插件的"实用工具"里，在最下方将url填入后点击安装即可
 
 <img width="1917" height="803" alt="image" src="https://github.com/user-attachments/assets/2709fbbe-6284-4064-a2fb-41e349046560" />
 
