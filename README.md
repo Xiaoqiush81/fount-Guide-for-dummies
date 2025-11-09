@@ -363,13 +363,22 @@ fount 助手会在以下这些情况下自动出现：
 
 <img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
 
+
+
 * **❓导入后角色界面出现类似下图的显示异常并伴随报错**
 
 首先尝试重启fount，重启一般能解决百分之八十的问题，其次就是VPN或者网络的问题，尝试换个网络或VPN开启全局和虚拟网卡模式，如果你使用的是gemini，那么尝试把节点换到例如日本，新加坡，美国等支持gemini服务的地区。
 如果你使用的是clash或其他第三方VPN软件时出现此情况，我建议你使用[Clash rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)，原因是现有的clash for Windows基本已经停止维护和更新，所以可能会出现兼容和连接问题
 <img width="2483" height="1254" alt="image" src="https://github.com/user-attachments/assets/ad62e748-189b-4335-b0f1-276ce7edb106" />
 
+
+* **❓后台出现类似以下报错**
+  
+网络问题，请打开VPN软件的全局/虚拟网卡模式，如果打开了还是不行那就换个节点/换一家，或者参考上一条下个[Clash rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)试试
+<img width="1468" height="464" alt="image" src="https://github.com/user-attachments/assets/ce7623f9-9a4f-4259-bfb8-7ae3f3e1e1fd" />
+<img width="949" height="184" alt="image" src="https://github.com/user-attachments/assets/b97e581c-51e8-4021-87d9-63b8e7c89008" />
+
 * **❓使用gemini时出现了例如400,403之类的报错/bot一直卡在typing**
 
-bot出现了例如400,403之类的报错属于网络问题，更换节点或者网络，如果是卡在了typing，首先尝试重启fount，然后再检查网络和VPN，大部分的报错都是因为网络问题，可以参考上一条的自查步骤自行下载Clash rev
+bot出现了例如400,403之类的报错属于网络问题，更换节点或者网络，如果是卡在了typing，首先尝试重启fount，然后再检查网络和VPN，大部分的报错都是因为网络问题
 </details>
