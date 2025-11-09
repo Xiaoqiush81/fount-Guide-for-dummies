@@ -172,11 +172,18 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 又或者C模型免费但是有点蠢，适合做一些简单的判断，D模型适合生成回复的正文，角色可以开放多个来源接口来适当调用不同用途的模型。
 
 ---
-将AI来源配置到角色也很简单，首先点击角色界面上的配置按钮（有的角色可能无需配置，那么你可以直接开玩！）
+将AI来源配置到角色也很简单，首先点击角色，然后点击界面上的配置按钮（那个齿轮！）
+有的角色可能无需配置，那么你也可以直接开玩！
 
-<img width="129" height="104" alt="image" src="https://github.com/user-attachments/assets/a51c1cc3-830b-4263-bddd-3dd009c9c696" />
+<img width="357" height="384" alt="image" src="https://github.com/user-attachments/assets/8a095eba-2d05-4f70-bc05-7d656e040d5f" />
 
-在角色配置中的"AIsources"或"AIsource"位置填写你配置好的AI源名称，不同的角色可能数据结构不同，具体请看该角色的"部件配置"。
+
+
+进入后左边选择“chars”，右方直接选择你要配置的角色名字
+
+<img width="1892" height="649" alt="image" src="https://github.com/user-attachments/assets/1a698b6f-27db-4ca9-a87f-edd3e2a5145e" />
+
+然后下滑，在下面的配置文件中的"AIsources"或"AIsource"位置填写你配置好的AI源名称，不同的角色可能数据结构不同，具体请看该角色的"部件配置"。
 这里我以龙胆举例，在对应的位置填写你之前创建的AI源的名字，**这里的AI源名称是指你新建源时取的名字，不是json文件中的"name"。**
 比如在上一步中我新建的AI源名称是"gemini"，那么就对应图中的gemini，记得替换自己的AI源，然后在你希望这个AI源应用的地方填写对应的名称即可，比如我希望调用grok来回复nsfw的内容，调用gemini来回复sfw内容
 <img width="1711" height="825" alt="image" src="https://github.com/user-attachments/assets/60471c75-0382-4c97-a1e0-2c863346be6c" />
