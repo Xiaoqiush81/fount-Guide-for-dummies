@@ -347,6 +347,17 @@ fount 助手会在以下这些情况下自动出现：
 <details>
 <summary><b>各类报错自查</b></summary>
 
+ * **❓遇到问题先点开fount的调试页面查看更新或网络自查**
+
+首先点击在右上角的菜单栏
+
+<img width="77" height="61" alt="image" src="https://github.com/user-attachments/assets/c9b2e51f-82cb-4567-bb09-d5871a101a63" />
+
+然后点击成就下方的“打开调试面板”，点开后如果不是显示最新版，就需要更新一下fount，如果是网络问题，可以自行检查路由器/代理软件
+
+<img width="268" height="89" alt="image" src="https://github.com/user-attachments/assets/24da81ac-473b-474f-a1d1-e7f82264243e" />
+
+
  * **❓导入角色后没有显示/运行时终端爆红/搭建时终端爆乱码**
 
  首先尝试刷新fount页面或重启fount程序，如果你也是win10，出现了以上情况（终端爆红）建议使用[Windows terminal](https://aka.ms/terminal)，这是因为老旧的终端（CMD/PowerShell）无法正确“翻译” fount 输出的漂亮的彩色文本和特殊符号，把它们误认为了错误，而terminal则没有这个问题，它完美兼容fount输出的字符与文本，所以后续我的所有操作包括运行fount也是使用terminal而不是电脑自带的cmd或powershell
