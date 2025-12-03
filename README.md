@@ -266,7 +266,7 @@ fount-pwsh是一个适用于powershell或[esh](https://github.com/steve02081504/
 	
 * 安装fount-pwsh
 
-在终端中输入以下命令，如图，然后回车
+在终端中输入以下命令，如图，然后回车，没有任何报错就是安装成功了
 ```
 Install-Module fount-pwsh
 ```
@@ -277,7 +277,7 @@ Install-Module fount-pwsh
 ---
 * 配置fount-pwsh
 
-在终端里使用以下命令自动配置，然后回车。如图是以配置龙胆为助手的示例，配置后当你开启一个新的shell窗口时fount-pwsh会自动加载助手并启动
+在终端里使用以下命令自动配置，然后回车。如图是以配置龙胆为助手的示例，配置后当你开启一个新的shell窗口时fount-pwsh会自动加载助手并启动，同样没有出现任何报错就是配置成功
 ```
 Install-FountAssist <你的 fount 用户名> <需要的角色名>
 ```
@@ -331,7 +331,7 @@ fount 助手会在以下这些情况下自动出现：
 
 <img width="1917" height="803" alt="image" src="https://github.com/user-attachments/assets/2709fbbe-6284-4064-a2fb-41e349046560" />
 
-在完成后记得要打开浏览器集成插件
+在完成后记得要打开浏览器集成插件，另外因为现在油猴插件中注入用户脚本需要特定的扩展权限，你需要在[这里](https://www.tampermonkey.net/faq#Q209)查看并打开相应的权限才可以正常运行脚本
 
 <img width="368" height="336" alt="image" src="https://github.com/user-attachments/assets/e5022ff5-3b39-4804-8bc9-41fca560be48" />
 
@@ -339,8 +339,30 @@ fount 助手会在以下这些情况下自动出现：
 
 <img width="911" height="593" alt="image" src="https://github.com/user-attachments/assets/3758960e-1cfb-4925-83d8-84f3b38c5728" />
 
+如果遇到了如图的情况，浏览器脚本已经打开且**fount正在运行**但依然没有显示连接页面，可以查看一下浏览器的本地文件读取权限有没有打开
 
-**到此你已经成功安装好了浏览器集成插件，可以让你的fount角色们通过它和你的浏览器进行交互啦！**
+<img width="872" height="446" alt="image" src="https://github.com/user-attachments/assets/9afe5158-9797-478a-9fda-23552e8ddd2f" />
+
+以Chrome举例，你需要点击扩展图标，然后"管理扩展程序"，找到你的油猴插件，点击"详情"
+
+<img width="412" height="330" alt="image" src="https://github.com/user-attachments/assets/402ea8cd-5bc6-4114-91e0-f8272d80f7a6" />
+<img width="546" height="288" alt="image" src="https://github.com/user-attachments/assets/0147a3ad-db18-4218-b38b-c8d9f200a14f" />
+
+然后下滑找到"允许访问文件地址"，把它打开
+<img width="854" height="69" alt="image" src="https://github.com/user-attachments/assets/bb2443c2-8c6b-4208-8853-6206f891ae57" />
+
+## 以下是一些浏览器集成应用的例子
+
+* **让角色在当前网页上发送弹幕**
+
+<img width="842" height="144" alt="image" src="https://github.com/user-attachments/assets/18d5c5d6-6941-454e-a64a-362605aef894" />
+
+* **让角色播放视频**
+
+<img width="992" height="854" alt="image" src="https://github.com/user-attachments/assets/426a7037-7f7b-4815-8ed8-c3d436bc21b8" />
+
+
+## 到此你已经成功安装好了浏览器集成插件，可以让你的fount角色们通过它和你的浏览器进行交互啦！
 </details>
 
 ## 🛠️报错自查
