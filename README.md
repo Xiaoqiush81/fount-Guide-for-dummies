@@ -202,9 +202,10 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 我们已经在上一步完成了AI源的配置和创建，那么我们就可以利用fount内置的功能把任何一个角色配置成Discord bot或telegram bot，这里我以一张从酒馆导入的角色卡（Ghost）配置discord bot举例。
 
 ---
-首先点击右上角菜单选择"配置Discord bot"
+首先点击右上角菜单选择"bot"，然后"管理Discord bot"
 
-<img width="333" height="596" alt="image" src="https://github.com/user-attachments/assets/e83d8c4e-18b2-4d0b-afe7-66d17e937c0a" />
+<img width="258" height="138" alt="image" src="https://github.com/user-attachments/assets/cd286cc0-7991-4a1b-abe5-8c1d13bc48f7" />
+
 
 然后新建一个bot，这里的名字没有特定要求，随便填写即可
 
@@ -227,6 +228,10 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 然后我们在拿到Token之后返回fount的配置页面，把你的Token填入“Discord API Key”，然后在下方的json文件填写对应配置，比如OwnerUserName（填你自己的Discord名字），其他配置保持默认即可，然后点击保存，启动即可
 <img width="1339" height="781" alt="image" src="https://github.com/user-attachments/assets/d7cf7272-5966-4007-a859-fa66783681c4" />
 
+如果你需要把龙胆配置成Discord的bot，配置页面也可以直接参考我的文件，自己替换关键词即可
+
+<img width="669" height="247" alt="image" src="https://github.com/user-attachments/assets/ff8ed41a-d8ee-4504-b9b0-dabafad18991" />
+
 下面是邀请bot进入服务器，在邀请之前你需要自己勾选对应的权限，首先点击右侧"OAuth2"，勾选bot。
 <img width="1625" height="365" alt="image" src="https://github.com/user-attachments/assets/b7be9ec2-4ec0-4dff-9fda-761540740694" />
 
@@ -242,9 +247,10 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 <details>
 <summary><b>2. 配置telegram bot</b></summary>
 	
-这里我以配置龙胆的telegram bot为例子，首先打开右上角菜单选择配置telegram bot
+这里我以配置龙胆的telegram bot为例子，首先打开右上角菜单选择"bot"，然后"管理telegram bot"
 
-<img width="400" height="377" alt="image" src="https://github.com/user-attachments/assets/28d15096-1baf-4ffb-9af9-00b172e2465f" />
+<img width="258" height="138" alt="image" src="https://github.com/user-attachments/assets/5ef2d6ea-b517-415b-8a8e-5e900519e465" />
+
 
 然后新建一个bot，这里的名字没有特定要求，随意填写即可
 <img width="612" height="230" alt="image" src="https://github.com/user-attachments/assets/69bd4c14-44b1-4fa1-bb6a-940f3f10ab3b" />
