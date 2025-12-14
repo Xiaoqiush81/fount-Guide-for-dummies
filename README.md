@@ -68,6 +68,10 @@
 当我们进入fount后你会看到类似这样的角色选择页面，刚开始是没有角色的，莫慌，看到右上角的那个菜单按钮了吗？点它就会出现功能界面！
 <img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/40111044-27f9-4800-a038-26dc61b37f65" />
 
+首先点击“组件”——“导入”
+
+<img width="1242" height="805" alt="image" src="https://github.com/user-attachments/assets/1597ec4c-abbb-4ce7-9ac6-aedde133e5ec" />
+
 在导入中我们有两种导入方式，一种是上传已下载的fount角色（zip档案）或酒馆角色（png，json档案）
 另一种是右边的文字导入，我们可以粘贴角色网址（github网址、chub网址或risurlm网址），每行一个，随后批量导入！
 <img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/df584df6-68c1-4a73-bd13-03cb17e3e2d2" />
@@ -189,6 +193,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 <img width="1711" height="825" alt="image" src="https://github.com/user-attachments/assets/60471c75-0382-4c97-a1e0-2c863346be6c" />
 
 由于fount目前已经更新了设置默认AI源的功能，所以只需要在你的AI源列表给你想设置的源打上勾，这样设置了默认源后，新的角色就不需要再繁琐地重复上述填写AIsources配置的步骤，他们会自动调用这个默认源，而不需要挨个点开来填写配置。
+
 <img width="424" height="609" alt="image" src="https://github.com/user-attachments/assets/21ceca98-8366-487a-90dd-7f1e12e3e837" />
 
 ## 到此你已经成功为角色配置好了AI源，可以直接开始和他们聊天啦！
