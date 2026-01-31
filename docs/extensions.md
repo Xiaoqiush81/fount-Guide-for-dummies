@@ -10,8 +10,10 @@
 
 1. 前往 [Discord Developer Portal](https://discord.com/developers/applications)。
 2. 点击 **New Application**，输入 bot 的名字，点击 Create。
+
    <img width="767" height="428" alt="image" src="https://github.com/user-attachments/assets/dd2d51e9-3a00-4198-8769-9a0b21a100b7" />
-   _(注意：这个名字会作为你的 bot 的名字和用户名)_
+   
+   _(注意：这个名字会作为你的 bot 的名字和用户名，你也可以在后续修改它)_
 3. 你可以在这里上传头像，设置描述等。
 
 ### 第二步：配置 Bot 权限 (非常重要！) 🔴
@@ -36,12 +38,13 @@
 1. 在 Discord 开发者页面左侧选 **OAuth2** -> **URL Generator**。
 2. 勾选 `bot`。
    <img width="1625" height="365" alt="image" src="https://github.com/user-attachments/assets/b7be9ec2-4ec0-4dff-9fda-761540740694" />
-3. 在下方权限 (Bot Permissions) 中，勾选需要的权限（勾选 `Administrator` 最省事）。
+3. 在下方权限 (Bot Permissions) 中，勾选需要的权限（图省事可以只勾选 `Administrator`），要注意如果不勾选`Administrator`图中的三个权限是必须要勾选的！
    <img width="1901" height="930" alt="image" src="https://github.com/user-attachments/assets/775ba6fb-28d9-4288-aa2b-ee7531ec6a4a" />
 4. 复制生成的 URL，在浏览器打开，邀请 Bot 进入你的服务器。
    <img width="1590" height="283" alt="image" src="https://github.com/user-attachments/assets/41971530-e3e0-4db2-a109-fb5b83153839" />
 
 邀请成功后，你应该能在服务器侧边栏看到你的 Bot：
+
 <img width="565" height="850" alt="image" src="https://github.com/user-attachments/assets/5c6002b7-132f-41aa-8f37-58fa16859e07" />
 
 ---
@@ -56,8 +59,10 @@
 2. **配置 fount**：
    - 菜单 -> **Bot** -> **管理 Telegram bot**。
    - 新建 Bot。
+   
      <img width="612" height="230" alt="image" src="https://github.com/user-attachments/assets/69bd4c14-44b1-4fa1-bb6a-940f3f10ab3b" />
-   - 填入 Token 和你的 User ID (作为管理员)。
+
+    - 填入 Token 和你的 User ID (作为管理员)。
      <img width="1350" height="807" alt="image" src="https://github.com/user-attachments/assets/576b220f-e5ca-4ce2-9789-12ad8d39fd18" />
 
 ---
@@ -102,9 +107,11 @@
 ### 效果展示
 
 - **发送弹幕**：
+
   <img width="842" height="144" alt="image" src="https://github.com/user-attachments/assets/18d5c5d6-6941-454e-a64a-362605aef894" />
 
 - **播放视频**：
+
   <img width="992" height="854" alt="image" src="https://github.com/user-attachments/assets/426a7037-7f7b-4815-8ed8-c3d436bc21b8" />
 
 ### 第一步：安装脚本管理器
