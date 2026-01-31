@@ -1,6 +1,6 @@
 # fount 白痴手册
 
-这份指南旨在帮助新手快速上手 [fount](https://github.com/steve02081504/fount)，改编自fount作者steve的教程。  
+这份指南旨在帮助新手快速上手 [fount](https://github.com/steve02081504/fount)，由Xiaoqiush整理改编自fount作者steve的教程。  
 fount 是一个超级自由的、开源的本地 AI 角色扮演平台。
 
 > **🚫 严禁将本手册内容转载至类脑、方舟等社区。转发请注明作者。**
