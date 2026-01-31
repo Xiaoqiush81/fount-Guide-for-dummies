@@ -29,12 +29,14 @@
 
 ### 进入配置界面
 
-1. 在主页右上角菜单，选择 **“管理 AI 源”**。
-   <img width="395" height="290" alt="image" src="https://github.com/user-attachments/assets/dc165e64-0805-4dc2-9469-475409212f35" />
+1. 在主页右上角菜单，选择 **“管理服务源”**。
+ 
+ <img width="293" height="253" alt="image" src="https://github.com/user-attachments/assets/1688a1b4-f848-45e7-a909-9f1c6e14bbdb" />
 
 2. 点击 **“+”** 新建一个 AI 源。
 3. **生成器** 选择 `gemini` (或其他)。
 4. **名称**：给它起个名字（例如 `gemini`），**这个名称无特定标准，自行填写即可，记得不要包含后缀**。
+
    <img width="832" height="209" alt="image" src="https://github.com/user-attachments/assets/9dc1a6b9-701d-4463-9f2b-1277384c08fc" />
 
 ### A. 配置 Gemini (官方 API)
