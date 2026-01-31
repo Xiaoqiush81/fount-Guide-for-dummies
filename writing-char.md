@@ -22,8 +22,9 @@ fount要求角色提供workflow来完成对话逻辑
 fount可以正常运行大部分酒馆角色卡，所以学习制作原生的fount角色并不是必选项。 :)
 # 开始制作！
 
-首先我们需要在fount的目录下的`data/users/<用户名>/chars`文件夹下创建一个新的文件夹用于角色
-这里我们先创建一个`dinzhen`文件夹
+首先，在 fount 的 `data/users/<用户名>/chars` 目录下为角色创建一个新文件夹（如 `dinzhen`）。
+
+> **路径说明**：下文中的 import 路径假定角色位于 `data/users/<用户名>/chars/<角色文件夹>/`。若角色放在其他位置（如 `default/templates/user/chars/`），请按相对层级调整 `../../../../../src/` 中 `../` 的数量。
 
 <img width="318" height="227" alt="image" src="https://github.com/user-attachments/assets/b127ed62-ac4d-4d7b-bda6-d7c466dbc51c" />
 
@@ -36,7 +37,9 @@ fount可以正常运行大部分酒馆角色卡，所以学习制作原生的fou
 让我们先将丁真的`main.mjs`这样写：
 
 ```js
-/** @typedef {import('../../../../../src/decl/charAPI.ts').CharAPI_t} CharAPI_t */
+/**
+ * @typedef {import('../../../../../src/decl/charAPI.ts').CharAPI_t} CharAPI_t
+ */
 
 /** @type {CharAPI_t} */
 export default {
@@ -53,36 +56,32 @@ export default {
         }
     },
 
-    Init: (stat) => { },
-    Load: (stat) => { },
-    Unload: (reason) => { },
+    Init: stat => { },
+    Load: stat => { },
+    Unload: reason => { },
     Uninstall: (reason, from) => { },
 
     interfaces: {
         chat: {
-            GetGreeting: (arg, index) => ({ content: '哈喽？' }),
-            GetGroupGreeting: (arg, index) => ({ content: '哈喽？' }),
-            GetPrompt: (args, prompt_struct, detail_level) => {
-                return {
-                    text: [],
-                    additional_chat_log: [],
-                    extension: {},
-                }
-            },
-            GetPromptForOther: (args, prompt_struct, detail_level) => {
-                return {
-                    text: [],
-                    additional_chat_log: [],
-                    extension: {},
-                }
-            },
-            GetReply: async (args) => {
-                return { content: '妈妈生的' }
-            }
+            GetGreeting: (arg, index) => [{ content: '哈喽？' }][index],
+            GetGroupGreeting: (arg, index) => [{ content: '哈喽？' }][index],
+            GetPrompt: async args => ({
+                text: [],
+                additional_chat_log: [],
+                extension: {},
+            }),
+            GetPromptForOther: args => ({
+                text: [],
+                additional_chat_log: [],
+                extension: {},
+            }),
+            GetReply: async args => ({ content: '妈妈生的' })
         }
     }
 }
 ```
+
+> **说明**：`GetGreeting` 和 `GetGroupGreeting` 的第二个参数 `index` 用于选择多条开场白中的一条；返回 `Promise<chatReply_t | null>`，即 `{ content: string, files?: [...], ... }` 或 `null`。
 随后启动或刷新fount，你可以看到丁真出现在角色选区内，让我们试着聊聊天 X)
 
 <img width="1078" height="573" alt="image" src="https://github.com/user-attachments/assets/03ff7f70-c063-482a-a20c-292b0f88d6c3" />
@@ -142,51 +141,54 @@ GetReply: async (args) => {
 
 好了，打闹到此结束，让我们试试给丁真加入AI支持。
 
-首先撤销掉我们为创建smoke文件所作的代码修改，随后在文件开头导入这两个：
-⁨```js
-import { buildPromptStruct } from "../../../../../src/public/parts/shells/chat/src/prompt_struct.mjs"
-import { loadAnyPreferredDefaultPart, loadPart } from '../../../../../src/server/parts_loader.mjs'
-```⁩
-这些函数由fount提供，第一个用于自角色、世界、用户人设中构筑prompt结构，用于传递到AI。第二个负责根据用户名和AI源名称加载部件，这里我们用它加载AI源。
+首先撤销掉我们为创建 smoke 文件所作的代码修改，随后在文件开头导入：
 
-接着我们在main.mjs中声明些全局变量，用于存储用户名和AI来源：
-⁨```js
-let username
-let AIsource
-```⁩
-随后我们这么修改代码以完成相关支持：
-⁨```js
-// 加载函数，在角色被加载时调用，在这里获取用户名
-Load: (stat) => {
-    username = stat.username // 获取用户名
+```js
+import { buildPromptStruct } from '../../../../../src/public/parts/shells/chat/src/prompt_struct.mjs'
+import { loadPart, loadAnyPreferredDefaultPart } from '../../../../../src/server/parts_loader.mjs'
+```
+
+这些函数由 fount 提供：`buildPromptStruct` 用于从角色、世界、用户人设等构筑 prompt 结构并传给 AI；`loadPart` 和 `loadAnyPreferredDefaultPart` 用于按用户名和部件路径加载部件，这里用来加载 AI 源。
+
+接着在 `main.mjs` 中声明全局变量：
+
+```js
+let username = ''
+/** @type {import('../../../../../src/decl/AIsource.ts').textAISource_t} */
+let AIsource = null
+```
+
+随后修改 `Load` 和 `config`：
+
+```js
+Load: stat => {
+    username = stat.username
 },
-```⁩
-⁨```js
-// 角色的接口
-interfaces: {
-    // 角色的配置接口
-    config: {
-        // 获取角色的配置数据
-        GetData: () => ({
-            AIsource: AIsource?.filename, // 返回当前使用的AI源的文件名
-        }),
-        // 设置角色的配置数据
-        SetData: (data) => {
-            // 如果传入了AI源的配置
-            if (data.AIsource) AIsource = await loadPart(username, 'serviceSources/AI/' + data.AIsource) // 加载AI源
-            else AIsource = await loadAnyPreferredDefaultPart(username, 'serviceSources/AI') // 或加载默认AI源（若未设置默认AI源则为undefined）
-        }
-    },
-```⁩
+```
 
-最后我们让丁真变成AI丁真！
-⁨```js
-GetReply: async (args) => {
+```js
+config: {
+    GetData: () => ({
+        AIsource: AIsource?.filename || '',
+    }),
+    SetData: async data => {
+        if (data.AIsource)
+            AIsource = await loadPart(username, 'serviceSources/AI/' + data.AIsource)
+        else
+            AIsource = await loadAnyPreferredDefaultPart(username, 'serviceSources/AI')
+    }
+},
+```
+
+最后让丁真变成 AI 丁真：
+
+```js
+GetReply: async args => {
     if (!AIsource) return { content: '妈妈生的' }
-    let result = await AIsource.StructCall(await buildPromptStruct(args))
-    return result
+    const prompt_struct = await buildPromptStruct(args)
+    return await AIsource.StructCall(prompt_struct)
 },
-```⁩
+```
 
 现在我们再重载fount，在设置好AI来源后丁真已经能完成基本的AI助手任务了。
 甚至凭借着gemini对丁真的理解，无需prompt都扮演的还不错。
@@ -196,14 +198,14 @@ GetReply: async (args) => {
 ## 那么——prompt。
 
 很明显不是所有角色都像丁真一样在模型内部拥有角色理解，这时我们便涉及到了prompt写作——
-让我们先看看fount角色中prompt相关的入口点：
+让我们先看看 fount 角色中 prompt 相关的入口点：
 
 ```ts
-GetPrompt: (arg: chatReplyRequest_t, prompt_struct: prompt_struct_t, detail_level: number) => Promise<single_part_prompt_t>;
-GetPromptForOther: (arg: chatReplyRequest_t, prompt_struct: prompt_struct_t, detail_level: number) => Promise<single_part_prompt_t>;
+GetPrompt: (arg: chatReplyRequest_t) => Promise<single_part_prompt_t>;
+GetPromptForOther: (arg: chatReplyRequest_t) => Promise<single_part_prompt_t>;
 ```
 
-这两个函数类型签名相同，只有名称不同。
+这两个函数签名相同，仅名称不同。
 这两个函数分别在角色扮演中起到不同的作用：
 - `GetPrompt`用于本角色生成回复
 - `GetPromptForOther`用于在群聊中的其他角色生成回复
@@ -214,30 +216,31 @@ GetPromptForOther: (arg: chatReplyRequest_t, prompt_struct: prompt_struct_t, det
 
 让我们再来看看这两个函数被要求的返回类型：
 ```ts
-type chatLogEntry_t = {
+interface chatLogEntry_t {
     name: string;
     time_stamp: timeStamp_t;
     role: role_t;
     content: string;
     files: {
         name: string;
-        mimeType: string;
+        mime_type: string;  // 注意是 mime_type 而非 mimeType
         buffer: Buffer;
         description: string;
     }[];
-    extension: {};
+    extension: object;
 }
-class single_part_prompt_t {
+interface single_part_prompt_t {
     text: {
         content: string;
-        description: string;
+        description?: string;
         important: number;
     }[];
     additional_chat_log: chatLogEntry_t[];
-    extension: {};
+    extension: object;
 }
 ```
-在fount中角色返回的prompt内容大致分为两大部分：
+
+在 fount 中，角色返回的 prompt 内容大致分为两大部分：
 - `text`部分进行基础的角色定义，数组中允许复数个对象存在。
   * 每个对象中都有`content`字段用于记录prompt内容
   * `important`字段则表明该对象的重要程度，重要程度越高，该数值越大。
@@ -301,23 +304,22 @@ GetPrompt: async (args, prompt_struct, detail_level) => {
 让我们看看第一个正式的fount角色龙胆是怎么做到世界书一样的匹配功能的：
 
 ```js
-/** @typedef {import('../../../../../../src/public/shells/chat/decl/chatLog').chatReplyRequest_t} chatReplyRequest_t */
-/** @typedef {import('../../../../../../src/public/shells/chat/decl/chatLog').chatLogEntry_t} chatLogEntry_t */
+/** @typedef {import('../../../../../../src/public/parts/shells/chat/decl/chatLog.ts').chatReplyRequest_t} chatReplyRequest_t */
+/** @typedef {import('../../../../../../src/public/parts/shells/chat/decl/chatLog.ts').chatLogEntry_t} chatLogEntry_t */
 import { escapeRegExp } from './tools.mjs'
 import * as OpenCC from 'opencc-js'
 
-let chT2S = OpenCC.Converter({from: 'twp', to: 'cn'})
+const chT2S = OpenCC.Converter({ from: 'twp', to: 'cn' })
+
 /**
- * Return a subset of chat_log, scoped by depth and role
- * @param {chatReplyRequest_t} args
- * @param {'user'|'char'|'both'|'other'} [from='any'] filter by role
- * @param {number} [depth=4] number of entries to return
- * @return {chatLogEntry_t[]} the scoped chat log
+ * 返回按深度和角色范围限定的聊天记录子集
+ * @param {chatReplyRequest_t} args - 聊天回复请求
+ * @param {'user'|'char'|'both'|'other'|'any'} [from='any'] - 按角色筛选
+ * @param {number} [depth=4] - 返回的条目数
+ * @returns {chatLogEntry_t[]}
  */
-export function getScopedChatLog(args , from='any', depth = 4) {
-    // pickup the last few entry of chat_log
+export function getScopedChatLog(args, from = 'any', depth = 4) {
     let chat_log = args.chat_log.slice(-depth)
-    // filter roles
     switch (from) {
         case 'user':
             chat_log = chat_log.filter(x => x.name == args.UserCharname)
@@ -336,42 +338,45 @@ export function getScopedChatLog(args , from='any', depth = 4) {
 }
 
 /**
+ * 在聊天记录中匹配关键词
  * @param {chatReplyRequest_t} args
  * @param {(string|RegExp)[]} keys
- * @param {'any'|'user'|'char'|'other'} from
- * @param {number} depth
- * @param {(content:string,reg_keys:RegExp[]) => boolean} matcher
+ * @param {'any'|'user'|'char'|'other'} [from='any']
+ * @param {number} [depth=4]
+ * @param {(content:string, reg_keys:RegExp[]) => number} [matcher]
+ * @returns {Promise<number>} - 匹配命中数量
  */
-export function match_keys(args, keys, from = 'any', depth = 4,
+export async function match_keys(args, keys, from = 'any', depth = 4,
     matcher = (content, reg_keys) => reg_keys.filter(key => content.match(key)).length
 ) {
-    let chat_log = getScopedChatLog(args, from, depth)
-
-    // convert all keys to regexp, if it's have chinese like character, no match hole word
+    const chat_log = getScopedChatLog(args, from, depth)
     keys = keys.map(key =>
         key instanceof RegExp ? key :
         new RegExp(/\p{Unified_Ideograph}/u.test(key) ? escapeRegExp(key) : `\\b${escapeRegExp(key)}\\b`, 'ugi'))
 
-    let content = chat_log.map(x => x.extension.SimplifiedContent ??= chT2S(x.content)).join('\n')
-
+    const content = chat_log.map(x => x.extension?.SimplifiedContent ??= chT2S(x.content)).join('\n')
     return matcher(content, keys)
 }
 
-export function match_keys_all(args, keys, from = 'any', depth = 4) {
-    return match_keys(args, keys, from, depth, (content, reg_keys) => reg_keys.every(key => content.match(key)))
+/** 仅当所有 key 都命中时返回真 */
+export async function match_keys_all(args, keys, from = 'any', depth = 4) {
+    return match_keys(args, keys, from, depth,
+        (content, reg_keys) => reg_keys.every(key => content.match(key)))
 }
 ```
 
-在她的match.mjs文件中定义了3个函数：
+> **注意**：龙胆的 `match_keys` 已改为 `async`（因需预处理内容）。若角色有翻译/预处理逻辑，需用 `await match_keys(...)` 调用。
+
+在她的 `match.mjs` 中定义了 3 个函数：
 - `getScopedChatLog`用于自给定的`chatReplyRequest_t`（来自fount）中取出给定范围和深度的聊天记录内容
 - `match_keys`函数用于给定关键词列表来匹配某个范围的聊天记录，并返回匹配命中数量。
 -  `match_keys_all`是`match_keys`的特化版本，只在给定的所有key都命中时才返回为真。
 
-通过这样的简易逻辑，我们就能实现简单的关键词触发prompt了：
+通过这样的简易逻辑，我们就能实现简单的关键词触发 prompt 了：
 
 ```js
-if (match_keys(args, ['原理', '架构', '魔法'], 'any') &&
-    match_keys(args, ['灵魂'], 'any'))
+if (await match_keys(args, ['原理', '架构', '魔法'], 'any') &&
+    await match_keys(args, ['灵魂'], 'any'))
     result += `\
 在你的世界中，生物是灵魂的容器。小孩生下来后体内并没有灵魂，它们会本能地行动并从空气中汲取魔素来在肉体里构建灵魂
 肉体利用游离魔素来组装灵魂帮助自己复杂地应对事物并产生更多的肉体。
@@ -384,18 +389,129 @@ if (match_keys(args, ['原理', '架构', '魔法'], 'any') &&
 既然我们看了下龙胆内部的关键词匹配实现，不如让我们再深入点，看点其他有趣的内容。
 
 ```js
-if (match_keys(args, ['什么日子', '什么节日', '什么时间', 'date', 'time', 'week', 'year', '七夕', '万圣节', '上巳节', '下元节', '中元节', /*...*/, '麻风节', '龙抬头'], 'any'))
+if (await match_keys(args, ['什么日子', '什么节日', '什么时间', 'date', 'time', 'week', 'year', '七夕', '万圣节', '上巳节', '下元节', '中元节', /*...*/, '麻风节', '龙抬头'], 'any')) {
+    const locale = args.locales?.[0] || 'zh-CN'
+    const lastMsg = args.chat_log.slice(-1)[0]
     result += `\
-当前时间：${new Date().toLocaleString(args.locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
-距离上次消息已过去：${new Date(new Date() - args.chat_log.slice(-1)[0].timeStamp).toLocaleTimeString(args.locale)}
+当前时间：${new Date().toLocaleString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
+距离上次消息已过去：${lastMsg ? new Date(Date.now() - lastMsg.time_stamp).toLocaleTimeString(locale) : 'N/A'}
 `
+}
 ```
 
-如你所见，龙胆中使用js代码运行结果内嵌至prompt来给模型时间信息，而这种思路还可以用在很多地方 :)
+如你所见，龙胆中使用 js 代码运行结果内嵌至 prompt 来给模型时间信息，而这种思路还可以用在很多地方 :)
+
+## 流支持与自定义角色功能的规范性写法
+
+新版 fount 支持流式回复（边生成边显示）。要使角色正确支持流式输出并兼容工具调用等自定义功能，需要遵循以下规范。
+
+### chatReply_t 结构与 generation_options
+
+`GetReply` 应返回 `chatReply_t` 结构，至少包含：
+
+```ts
+interface chatReply_t {
+    content: string
+    logContextBefore?: chatLogEntry_t[]   // 显示在此回复前的日志（如工具调用过程）
+    logContextAfter?: chatLogEntry_t[]
+    files?: { name: string; mime_type: string; buffer: Buffer; description: string }[]
+    extension?: object
+}
+```
+
+调用 AI 时，应把 `args.generation_options` 传给 `AIsource.StructCall`，以启用流式更新：
+
+```js
+args.generation_options ??= {}
+args.generation_options.base_result = result
+await AIsource.StructCall(prompt_struct, args.generation_options)
+```
+
+`generation_options` 包含：
+- `base_result`：用于流式追加内容的回复对象
+- `replyPreviewUpdater`：流式期间每收到一块内容时调用的回调，可在此对预览做处理（如隐藏未完成的工具块）
+- `signal`：`AbortSignal`，用于中断生成
+
+### AddLongTimeLog 与 ReplyHandler
+
+当角色或插件需要在生成中向 prompt 追加内容（如工具执行结果）时，应使用 `AddLongTimeLog`，而不是直接修改 `prompt_struct` 后忘记同步到 `result`：
+
+```js
+function AddLongTimeLog(entry) {
+    entry.charVisibility = [args.char_id]
+    result?.logContextBefore?.push?.(entry)
+    prompt_struct.char_prompt.additional_chat_log.push(entry)
+}
+```
+
+`ReplyHandler` 是处理 AI 原始输出的函数（如代码执行、工具调用）。若处理成功并需要重新生成，应返回 `true` 以触发 `continue regen`。
+
+### defineToolUseBlocks 与流式预览
+
+若角色或插件使用了 `<tag>...</tag>` 形式的工具语法，应在 `replyPreviewUpdater` 管线中通过 `defineToolUseBlocks` 将未完成的工具块隐藏或替换为占位符，避免在流式过程中把半成品标签展示给用户：
+
+```js
+import { defineToolUseBlocks } from '../../../../../src/public/parts/shells/chat/src/stream.mjs'
+
+// 在 GetReply 中构建 replyPreviewUpdater 管线
+let replyPreviewUpdater = (args, r) => oriReplyPreviewUpdater?.(r)
+for (const GetReplyPreviewUpdater of [
+    defineToolUseBlocks([
+        { start: '<run-pwsh>', end: '</run-pwsh>' },
+        { start: /<generate-char[^>]*>/, end: '</generate-char>' },
+        // ... 你的工具标签对
+    ]),
+    ...Object.values(args.plugins || {}).map(p => p.interfaces?.chat?.GetReplyPreviewUpdater)
+].filter(Boolean))
+    replyPreviewUpdater = GetReplyPreviewUpdater(replyPreviewUpdater)
+
+args.generation_options.replyPreviewUpdater = r => replyPreviewUpdater(args, r)
+```
+
+### 规范性 GetReply 流程示例
+
+```js
+GetReply: async args => {
+    if (!AIsource) return { content: '未配置 AI 源时的提示' }
+    const prompt_struct = await buildPromptStruct(args)
+    const result = {
+        content: '',
+        logContextBefore: [],
+        logContextAfter: [],
+        files: [],
+        extension: {},
+    }
+    function AddLongTimeLog(entry) {
+        entry.charVisibility = [args.char_id]
+        result?.logContextBefore?.push?.(entry)
+        prompt_struct.char_prompt.additional_chat_log.push(entry)
+    }
+    args.generation_options ??= {}
+    const oriReplyPreviewUpdater = args.generation_options?.replyPreviewUpdater
+    let replyPreviewUpdater = (args, r) => oriReplyPreviewUpdater?.(r)
+    // 若有工具块，在此添加 defineToolUseBlocks(...)
+    args.generation_options.replyPreviewUpdater = r => replyPreviewUpdater(args, r)
+
+    regen: while (true) {
+        args.generation_options.base_result = result
+        await AIsource.StructCall(prompt_struct, args.generation_options)
+        let continue_regen = false
+        for (const handler of [...(args.plugins ? Object.values(args.plugins) : [])]
+            .map(p => p?.interfaces?.chat?.ReplyHandler).filter(Boolean))
+            if (await handler(result, { ...args, prompt_struct, AddLongTimeLog }))
+                continue_regen = true
+        if (continue_regen) continue regen
+        break
+    }
+    return result
+}
+```
+
 ## 使用多文件来分割角色内容
 
-在角色的框架与内容逐渐变多时，你可以考虑使用mjs文件自带的import和export来分散文件内容，与其维护一个1mb的mjs文件，不如维护一个有这数百个mjs文件但每个文件都分类到合适位置的文件夹 :)
-## 在单一回复中多次调用AI来源
+在角色的框架与内容逐渐变多时，你可以考虑使用 mjs 文件自带的 `import` 和 `export` 来分散文件内容，与其维护一个巨大的单文件，不如维护一个多文件、按功能分类的文件夹结构。龙胆、ZL-31 均采用此种组织方式。
+
+## 在单一回复中多次调用 AI 来源
 你可能仍然会好奇龙胆是如何实现代码执行的，让我们来看看摘要内容：
 
 ```js
@@ -432,26 +548,29 @@ export async function GetReply(args) {
  * @param {prompt_struct_t} prompt_struct
  * @returns {Promise<boolean>}
  */
-export async function coderunner(result, prompt_struct) {
+export async function coderunner(result, { prompt_struct, AddLongTimeLog }) {
+    result.extension ??= {}
     result.extension.execed_codes ??= {}
     // ...
-    let pwshrunner = result.content.match(/(\n|^)\`\`\`run-pwsh\n(?<code>[^]*)\n\`\`\`/)?.groups?.code
+    const pwshrunner = result.content.match(/(\n|^)\`\`\`run-pwsh\n(?<code>[^]*)\n\`\`\`/)?.groups?.code
     if (pwshrunner) {
-        prompt_struct.char_prompt.additional_chat_log.push({
+        AddLongTimeLog({
             name: '龙胆',
             role: 'char',
             content: '\`\`\`run-pwsh\n' + pwshrunner + '\n\`\`\`',
-            files: []
+            files: [],
+            extension: {}
         })
         console.log('AI运行的Powershell代码：', pwshrunner)
         let pwshresult
         try { pwshresult = await exec(pwshrunner, { 'shell': 'pwsh.exe' }) } catch (err) { pwshresult = err }
         console.log('pwshresult', pwshresult)
-        prompt_struct.char_prompt.additional_chat_log.push({
+        AddLongTimeLog({
             name: 'system',
             role: 'system',
             content: '你运行了Powershell代码：\n' + pwshrunner + '\n执行结果：\nstdout：\n' + removeTerminalSequences(pwshresult.stdout) + '\nstderr：\n' + removeTerminalSequences(pwshresult.stderr),
-            files: []
+            files: [],
+            extension: {}
         })
         result.extension.execed_codes[pwshrunner] = pwshresult
         return true
@@ -477,7 +596,7 @@ export async function coderunner(result, prompt_struct) {
 
 *为什么我们需要外置图床才能玩有图的卡？*
 
-fount支持你使用`/chars/<角色名>/<文件路径>`来访问角色的public文件夹下的任意文件，所以你大可把图塞进角色文件夹下。不再需要任何的外置图床 :)
+fount 支持通过 URL 访问角色 `public` 文件夹下的资源。具体路径格式取决于部署方式，常见有 `/chars/<角色名>/<文件路径>` 或 `/parts/chars:<角色名>/<文件路径>` 等形式。你可以把图片等资源放在角色的 `public` 目录下，无需外置图床。
 
 顺便一提，角色的info中可以使用`avatar`字段来指定角色的默认头像，比如这样：
 
@@ -511,6 +630,8 @@ fount角色的安装包说到底就只是zip文件！
 
 # 模板代码
 
+> **info 的两种写法**：可以在 `main.mjs` 中直接写 `info: { 'zh-CN': { ... } }`，也可以像 ZL-31 一样使用独立的 `info.json`，在 `main.mjs` 中通过 `import info from './info.json' with { type: 'json' }` 引入，然后 `export default { info, ... }`。
+
 安装包信息模板
 ```json
 {
@@ -521,18 +642,15 @@ fount角色的安装包说到底就只是zip文件！
 主逻辑模板
 ```mjs
 /**
- * @typedef {import('../../../../../src/decl/charAPI.ts').charAPI_t} charAPI_t
+ * @typedef {import('../../../../../src/decl/charAPI.ts').CharAPI_t} CharAPI_t
  */
 
-import { loadAIsource, loadDefaultAIsource } from '../../../../../src/server/managers/AIsource_manager.mjs'
-import { buildPromptStruct } from '../../../../../src/public/shells/chat/src/prompt_struct.mjs'
+import { buildPromptStruct } from '../../../../../src/public/parts/shells/chat/src/prompt_struct.mjs'
+import { loadPart, loadAnyPreferredDefaultPart } from '../../../../../src/server/parts_loader.mjs'
 
-// AI源的实例
-/** @type {import('../../../../../src/decl/AIsource.ts').AIsource_t} */
-let AIsource = null
-
-// 用户名，用于加载AI源
 let username = ''
+/** @type {import('../../../../../src/decl/AIsource.ts').textAISource_t} */
+let AIsource = null
 
 /** @type {charAPI_t} */
 export default {
@@ -573,10 +691,11 @@ export default {
 				AIsource: AIsource?.filename || '', // 返回当前使用的AI源的文件名
 			}),
 			// 设置角色的配置数据
-			SetData: async (data) => {
-				// 如果传入了AI源的配置
-				if (data.AIsource)  AIsource = await loadAIsource(username, data.AIsource) // 加载AI源
-				else AIsource = await loadDefaultAIsource(username) // 或加载默认AI源（若未设置默认AI源则为undefined）
+			SetData: async data => {
+				if (data.AIsource)
+					AIsource = await loadPart(username, 'serviceSources/AI/' + data.AIsource)
+				else
+					AIsource = await loadAnyPreferredDefaultPart(username, 'serviceSources/AI')
 			}
 		},
 		// 角色的聊天接口
@@ -586,27 +705,16 @@ export default {
 			// 获取角色在群组中的问好
 			GetGroupGreeting: (arg, index) => [{ content: '<群组中角色加入时的问好>' }, { content: '<可以多个>' },][index],
 			// 获取角色的提示词
-			GetPrompt: async (args, prompt_struct, detail_level) => {
-				return {
-					text: [{
-						content: '<角色的设定内容>',
-						important: 0
-					}],
-					additional_chat_log: [],
-					extension: {},
-				}
-			},
-			// 获取其他角色看到的该角色的设定，群聊时生效
-			GetPromptForOther: (args, prompt_struct, detail_level) => {
-				return {
-					text: [{
-						content: '<其他角色看到的该角色的设定，群聊时生效>',
-						important: 0
-					}],
-					additional_chat_log: [],
-					extension: {},
-				}
-			},
+			GetPrompt: async args => ({
+				text: [{ content: '<角色的设定内容>', important: 0 }],
+				additional_chat_log: [],
+				extension: {},
+			}),
+			GetPromptForOther: args => ({
+				text: [{ content: '<其他角色看到的该角色的设定，群聊时生效>', important: 0 }],
+				additional_chat_log: [],
+				extension: {},
+			}),
 			// 获取角色的回复
 			GetReply: async (args) => {
 				// 如果没有设置AI源，返回默认回复
@@ -614,7 +722,7 @@ export default {
 				// 用fount提供的工具构建提示词结构
 				const prompt_struct = await buildPromptStruct(args)
 				// 创建回复容器
-				/** @type {import("../../../../../src/public/shells/chat/decl/chatLog.ts").chatReply_t} */
+				/** @type {import("../../../../../src/public/parts/shells/chat/decl/chatLog.ts").chatReply_t} */
 				const result = {
 					content: '',
 					logContextBefore: [],
@@ -629,16 +737,18 @@ export default {
 					prompt_struct.char_prompt.additional_chat_log.push(entry)
 				}
 
-				// 在重新生成循环中检查插件触发
 				regen: while (true) {
-					const requestResult = await AIsource.StructCall(prompt_struct)
+					args.generation_options ??= {}
+					args.generation_options.base_result = result
+					const requestResult = await AIsource.StructCall(prompt_struct, args.generation_options)
 					result.content = requestResult.content
 					result.files = result.files.concat(requestResult.files || [])
-					for (const replyHandler of [
-						...Object.values(args.plugins).map((plugin) => plugin.interfaces?.chat?.ReplyHandler)
-					].filter(Boolean))
-						if (replyHandler(result, { ...args, prompt_struct, AddLongTimeLog }))
-							continue regen
+					let continue_regen = false
+					for (const handler of [...Object.values(args.plugins || {})]
+						.map(p => p?.interfaces?.chat?.ReplyHandler).filter(Boolean))
+						if (await handler(result, { ...args, prompt_struct, AddLongTimeLog }))
+							continue_regen = true
+					if (continue_regen) continue regen
 					break
 				}
 				// 返回构建好的回复
