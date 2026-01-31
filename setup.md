@@ -1,5 +1,6 @@
 # fount 白痴手册 (Fount Guide for Dummies)
-一份基于我个人经验与现有教程的细化版本，旨在帮助新手更快地上手并入门fount，包含基础的搭建教程，使用注意事项与一些报错自查，由于我本人并不了解程序和编程，所以会在教程下方补充黑话之类的扫盲，该手册在我脱坑前也会一直持续更新。**禁转类脑/方舟，转发时注明作者即可，其他随意**
+
+一份基于个人经验与现有教程的细化版本，旨在帮助新手更快上手 fount。包含基础搭建教程、使用注意事项与报错自查。由于作者并非程序背景，会在教程下方补充「黑话」扫盲。手册将持续更新。**禁转类脑/方舟，转发时注明作者即可，其他随意。**
 
 
 ---
@@ -9,14 +10,14 @@
 简单来说，**fount 是一个超级自由的、开源的 AI 角色扮演平台。**
 
 它最大的特点就是【**完全的自由**】！不像其他平台有各种各样的限制，在 fount 的世界里，你想创造什么样的角色、进行什么样的对话，都只取决于你自己的想象力。
-详情请查看项目地址[fount](https://github.com/steve02081504/fount)
+详情请查看项目地址：[fount](https://github.com/steve02081504/fount)
 
 ## ✨ 为什么选择 fount？
 
-*   **绝对自由**: 支持原生JS动画/无过滤html渲染：fount将这些不安全的渲染选项作为默认选项进行支持而无需安装插件，真正的无限制，你的创意是唯一的边界。
-*   **高度兼容**: 支持多种主流的人物卡格式，兼容risu的charX，兼容SillyTavern的大部分不依赖插件和ST脚本的卡，可以轻松把其他地方的角色带过来玩。
-*   **完全本地**: 保护你的隐私，所有对话都发生在你的电脑上。
-*   **开源免费**: 社区驱动，不断进化，而且完全免费！
+*   **绝对自由**：支持原生 JS 动画/无过滤 HTML 渲染。fount 将这些渲染选项作为默认支持，无需安装插件，真正的无限制，你的创意是唯一的边界。
+*   **高度兼容**：支持多种主流人物卡格式，兼容 Risu 的 charX、SillyTavern 的大部分不依赖插件和 ST 脚本的卡，轻松迁移其他平台的角色。
+*   **完全本地**：保护隐私，所有对话均在本地进行。
+*   **开源免费**：社区驱动，持续进化，完全免费。
 
 ## 🚀 如何开始？(极速上手指南)
 
@@ -101,7 +102,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 <img width="232" height="359" alt="image" src="https://github.com/user-attachments/assets/ea7716fa-cd08-4d99-86d1-46e288c80e38" />
 
 这里我以deepseek举例，在“选择生成器”里选择proxy，然后在左侧的json文件按照如图填写，如果你也想配置deepseek，url和model可以直接复制我的，然后把`apikey`替换成你自己的key
-。此处顺便附赠链接[获取deepseek的API](https://platform.deepseek.com/sign_in)
+，此处附上 [DeepSeek API 获取链接](https://platform.deepseek.com/sign_in)。
 <img width="949" height="550" alt="image" src="https://github.com/user-attachments/assets/8960d234-0f43-4198-8124-d344b7c1bc45" />
 
 * 同理，因为fount的proxy生成器支持任何Open AI格式的自定义来源，所以如果你想把在SillyTavern中使用的轮询、反代等"兼容OpenAI"的API放入fount中使用，只需把你的URL地址和密钥填入相应的位置即可，但是需要注意的是如果你想使用proxy接口连接Gemini的轮询，**fount的proxy生成器只支持接收文件而不支持发送文件**，所以可能会出现AI识图功能失灵的情况（除此之外没有任何影响），此时我们就可以选择使用fount内置的polling轮询，接下来我会以配置Gemini的polling轮询进行示范
@@ -114,7 +115,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 
 **【此处为~~不负责佛系~~扫盲】**
   
-* ***选择生成器 (polling)***:这个是“团队的工作模式”。咱们图里选的这个 polling（轮询），就像是排队模式。您给团队一个任务，团队长（也就是fount）会按照您定好的名单，从第一个AI开始问：“你能干这个活吗？”。如果它不行或者在忙，就立刻去问名单上的第二个，以此类推，直到找到一个能完成任务的AI为止。
+* ***选择生成器 (polling)***：这个是“团队的工作模式”。咱们图里选的这个 polling（轮询），就像是排队模式。您给团队一个任务，团队长（也就是fount）会按照您定好的名单，从第一个AI开始问：“你能干这个活吗？”。如果它不行或者在忙，就立刻去问名单上的第二个，以此类推，直到找到一个能完成任务的AI为止。
 
 * ***name (名称)***：这个最简单啦，就是给这个“AI工作团队”起个好记的名字，只会影响它在你后台出现的调用AI源的名字
 
@@ -122,7 +123,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 
 * ***sources (来源列表)***：这就是那个“团队成员名单”啦！我们可以在这个名单里，写上所有您想让它去轮流询问的AI。您可以直接写上之前配置好的另一个AI源的名字（比如我们之前新建的AI源名称是"gemini"，那么可以直接填入在此处），也可以像图里那样，把一个AI的完整配置信息直接写在这里。
 
-* ***generator (生成器类型)***:这个是名单里某个成员的“具体身份”，比如它是OpenAI家的AI，还是Ollama家的AI，我们在这里配置的是Gemini，所以填写"gemini"即可。
+* ***generator (生成器类型)***：这个是名单里某个成员的“具体身份”，比如它是OpenAI家的AI，还是Ollama家的AI，我们在这里配置的是Gemini，所以填写"gemini"即可。
 
 * ***config (详细配置)***：这是这个成员的“个人档案”，里面记录了它的详细信息：
 
@@ -136,7 +137,7 @@ fount目前原生支持的AI源有[gemini](https://aistudio.google.com/apikey)�
 那么根据以上的了解，我们就可以直接把Gemini相关的配置格式替换进去：
 ```json
 {
-	"name": "pooling array",
+	"name": "polling array",
 	"provider": "unknown",
 	"sources": [
 		{
@@ -403,7 +404,7 @@ fount 助手会在以下这些情况下自动出现：
 
 * **❓安装Terminal后提示缺少Microsoft.UI.Xaml.2.8的应用包**
 
-去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。他可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。
+去该页面[下载依赖包](https://www.nuget.org/packages/Microsoft.UI.Xaml/)，点进去之后，在右边找到 “Download package” 下载，下载下来的是一个`.nupkg`文件。你可以把这个文件的后缀名改成`.zip`，然后解压，在里面的`tools\AppX\`文件夹里找到对应他系统架构（一般是x64）的`.appx`文件，双击安装。
 
 <img width="812" height="508" alt="image" src="https://github.com/user-attachments/assets/1064e58e-0ed8-4baf-8d04-c6594abf03cf" />
 
