@@ -165,7 +165,9 @@ GetReply: async (args) => {
 <img width="332" height="234" alt="image" src="https://github.com/user-attachments/assets/133769ea-ae74-4bb4-8978-61b05af14da2" />
 
 这是 fount 角色与酒馆角色的另一个不同点。fount 角色所提供的 `.mjs` 文件被 **无保护地** 运行在机器上，具有 fount 服务器进程的 **完整权限**。它们可以读写用户的磁盘文件，运行各种程序——甚至偷窥用户的隐私。
-这使得书写 **[龙胆]** 这样的秘书角色（可以帮你打开程序、整理文件）成为可能。
+这使得书写[龙胆](https://discord.com/channels/1288934771153440768/1290540416025886722)这样的秘书角色成为可能。
+
+<img width="729" height="342" alt="image" src="https://github.com/user-attachments/assets/bc7be7a8-d037-484d-b8a7-18dde4470e72" />
 
 好了，打闹到此结束，记得删除上面那段创建文件的代码。
 
