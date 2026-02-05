@@ -221,6 +221,24 @@ export default {
 }
 ```
 
+### 用了AI的回复函数
+
+现在，在 `GetReply` 里真正调用 AI：
+
+```javascript
+GetReply: async args => {
+    if (!AIsource) return { content: '妈妈生的 (未配置AI)' }
+    const prompt_struct = await buildPromptStruct(args)
+    // 直接调用 AI，暂时不处理流式
+    return await AIsource.StructCall(prompt_struct)
+},
+```
+
+现在我们再重载 fount，在设置好 AI 来源后丁真已经能完成基本的 AI 助手任务了。
+甚至凭借着 Gemini 对丁真的理解，无需 prompt 都扮演的还不错。
+
+<img width="1788" height="531" alt="image" src="https://github.com/user-attachments/assets/5e370c01-11a3-4c50-babd-e20e1b8db3c2" />
+
 ### 编写动态 Prompt
 
 既然我们是写代码，那就可以根据逻辑动态生成 Prompt。比如，让丁真在特定逻辑下变成猫娘。
@@ -254,24 +272,6 @@ GetPromptForOther: args => {
     }
 },
 ```
-
-### 最终的回复函数
-
-最后，在 `GetReply` 里真正调用 AI：
-
-```javascript
-GetReply: async args => {
-    if (!AIsource) return { content: '妈妈生的 (未配置AI)' }
-    const prompt_struct = await buildPromptStruct(args)
-    // 直接调用 AI，暂时不处理流式
-    return await AIsource.StructCall(prompt_struct)
-},
-```
-
-现在我们再重载 fount，在设置好 AI 来源后丁真已经能完成基本的 AI 助手任务了。
-甚至凭借着 Gemini 对丁真的理解，无需 prompt 都扮演的还不错。
-
-<img width="1788" height="531" alt="image" src="https://github.com/user-attachments/assets/5e370c01-11a3-4c50-babd-e20e1b8db3c2" />
 
 现在，我们可爱的小猫娘只有在 `1+1==2` 时才会有母乳体质。
 
