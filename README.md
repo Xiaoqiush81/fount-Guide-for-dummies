@@ -43,6 +43,9 @@ fount 是一个超级自由的、开源的本地 AI 角色扮演平台。
   - 编写 Prompt 逻辑
   - 使用工具与流式输出
   - 本地文件操作权限
+- **[从 Chatbot 到 Agent](./docs/dev-agent.md)**
+  - Agent 的能力分级
+  - 如何平衡自主性与安全
 
 ### 📎 附录
 

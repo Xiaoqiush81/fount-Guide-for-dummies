@@ -30,7 +30,7 @@
 ### 进入配置界面
 
 1. 在主页右上角菜单，选择 **“管理服务源”**。
- 
+
  <img width="293" height="253" alt="image" src="https://github.com/user-attachments/assets/1688a1b4-f848-45e7-a909-9f1c6e14bbdb" />
 
 2. 点击 **“+”** 新建一个 AI 源。

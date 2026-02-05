@@ -12,8 +12,9 @@
 2. 点击 **New Application**，输入 bot 的名字，点击 Create。
 
    <img width="767" height="428" alt="image" src="https://github.com/user-attachments/assets/dd2d51e9-3a00-4198-8769-9a0b21a100b7" />
-   
+
    _(注意：这个名字会作为你的 bot 的名字和用户名，你也可以在后续修改它)_
+
 3. 你可以在这里上传头像，设置描述等。
 
 ### 第二步：配置 Bot 权限 (非常重要！) 🔴
@@ -59,10 +60,10 @@
 2. **配置 fount**：
    - 菜单 -> **Bot** -> **管理 Telegram bot**。
    - 新建 Bot。
-   
+
      <img width="612" height="230" alt="image" src="https://github.com/user-attachments/assets/69bd4c14-44b1-4fa1-bb6a-940f3f10ab3b" />
 
-    - 填入 Token 和你的 User ID (作为管理员)。
+   - 填入 Token 和你的 User ID (作为管理员)。
      <img width="1350" height="807" alt="image" src="https://github.com/user-attachments/assets/576b220f-e5ca-4ce2-9789-12ad8d39fd18" />
 
 ---
