@@ -25,7 +25,7 @@
 3. **【关键步骤】** 向下滚动，找到 **Privileged Gateway Intents**。
 4. **把下面的三个开关全部打开！** (Presence, Server Members, Message Content)。
    <img width="1906" height="875" alt="image" src="https://github.com/user-attachments/assets/911e1943-84ec-436c-8884-c947a6ea442e" />
-   > **⚠️ 注意**：如果不打开这三个开关，Bot 无法读取消息，Fount 会报错或无响应。
+   > **⚠️ 注意**：如果不打开这三个开关，Bot 无法读取消息，fount 会报错或无响应。
 
 ### 第三步：配置 fount
 

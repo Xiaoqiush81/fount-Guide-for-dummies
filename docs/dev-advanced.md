@@ -185,7 +185,7 @@ Load: async stat => {
 
 ### C. 网页反向控制角色 (`window.trigger`)
 
-Saira 的网页不仅能显示，还能控制 Fount。
+Saira 的网页不仅能显示，还能控制 fount。
 她在网页中通过 `fetch` 调用上面注册的 API。
 
 ```javascript

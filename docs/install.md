@@ -54,7 +54,7 @@ fount 的启动脚本会在启动后未找到 deno 时自行安装 deno。
      [点击这里下载最新版的 fount](https://github.com/steve02081504/fount/archive/refs/heads/master.zip)。下载后解压。
 
 3. **启动**：
-   在终端中运行启动脚本。Fount 会自动安装 Git（如果需要）并在未来自动检查更新。
+   在终端中运行启动脚本。fount 会自动安装 Git（如果需要）并在未来自动检查更新。
 
 ---
 
