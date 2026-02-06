@@ -311,4 +311,4 @@ avatar: `${charurl}/avatar.png`,
 
 ---
 
-[下一章：角色开发进阶 (接入逻辑与高级功能)](./dev-advanced.md)
+[← 上一页：报错自查](./troubleshooting.md) | [返回主页](../README.md) | [下一页：角色开发进阶 →](./dev-advanced.md)

@@ -138,4 +138,4 @@
 
 ---
 
-[返回主页](../README.md)
+[← 上一页：导入角色](./import-char.md) | [返回主页](../README.md) | [下一页：报错自查 →](./troubleshooting.md)

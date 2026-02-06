@@ -77,4 +77,4 @@ fount 的启动脚本会在启动后未找到 deno 时自行安装 deno。
 
 ---
 
-[返回主页](../README.md)
+[返回主页](../README.md) | [下一页：基础配置 →](./configuration.md)
