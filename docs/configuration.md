@@ -111,4 +111,4 @@ fount 内置了 polling 轮询功能。
 
 ---
 
-[← 上一页：快速开始](./install.md) | [返回主页](../README.md) | [下一页：导入角色 →](./import-char.md)
+[← 上一页：快速开始](./install.md) | [返回主页](../README.md) | [下一页：进阶 AI 配置 →](./advanced-ai-configuration.md)

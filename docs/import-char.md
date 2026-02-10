@@ -39,4 +39,4 @@
 
 ---
 
-[← 上一页：基础配置](./configuration.md) | [返回主页](../README.md) | [下一页：拓展功能 →](./extensions.md)
+[← 上一页：进阶 AI 配置](./advanced-ai-configuration.md) | [返回主页](../README.md) | [下一页：拓展功能 →](./extensions.md)

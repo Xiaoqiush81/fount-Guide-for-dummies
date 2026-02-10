@@ -18,7 +18,8 @@ fount 是一个超级自由的、开源的本地 AI 角色扮演平台。
   - 安装与启动
 - **[2. 基础配置](./docs/configuration.md)**
   - 注册账号
-  - **配置 AI 源** (Gemini, OpenAI, DeepSeek, Polling 等)
+  - **配置 AI 源** (Gemini, OpenAI, DeepSeek)
+  - **[进阶 AI 源配置](./docs/advanced-ai-configuration.md)** (轮询、分流、多源并发)
   - 为角色分配 AI
 - **[3. 导入角色](./docs/import-char.md)** (详细教程：本地导入与链接导入)
 
