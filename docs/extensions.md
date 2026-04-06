@@ -2,7 +2,8 @@
 
 这些功能是选修课，让你的 fount 角色走出 fount，在其他平台活跃。
 
-## 1. Discord Bot
+<details>
+<summary><b>1. Discord Bot</b></summary>
 
 让角色成为 Discord 里的聊天机器人。
 
@@ -48,9 +49,10 @@
 
 <img width="565" height="850" alt="image" src="https://github.com/user-attachments/assets/5c6002b7-132f-41aa-8f37-58fa16859e07" />
 
----
+</details>
 
-## 2. Telegram Bot
+<details>
+<summary><b>2. Telegram Bot</b></summary>
 
 1. **准备 Bot Token**：
    - 在 Telegram 私聊[机爸](https://t.me/BotFather)。
@@ -66,9 +68,33 @@
    - 填入 Token 和你的 User ID (作为管理员)。
      <img width="1350" height="807" alt="image" src="https://github.com/user-attachments/assets/576b220f-e5ca-4ce2-9789-12ad8d39fd18" />
 
----
+</details>
 
-## 3. fount-pwsh (命令行助手)
+<details>
+<summary><b>3. WeChatBot（微信bot）</b></summary>
+
+通过微信官方的ClawBot插件来将角色接入你的微信！
+
+### 首先，在fount主页右上角的菜单中选择“bot”--“管理微信Bot”
+
+<img width="365" height="389" alt="image" src="https://github.com/user-attachments/assets/b682e52c-6fba-433a-9a03-2ee9c0c84bf6" />
+
+### 新建一个Bot
+
+<img width="888" height="311" alt="image" src="https://github.com/user-attachments/assets/00111129-7473-4c76-a421-2743fe5194cb" />
+
+### 然后绑定你想要接入到微信的角色，之后点击“扫码登录”，使用手机微信直接扫描二维码
+
+<img width="1373" height="877" alt="image" src="https://github.com/user-attachments/assets/6556c94f-2ab1-46db-8557-21fedb5b6a0d" />
+
+### 在扫码完成后，在你的手机微信上点击“确认连接”即可，之后返回配置页面，fount会自动帮你填写Bot的token和userID，URL留空不用管，随后点击保存配置，启动，即可在手机上和你的角色愉快聊天了！
+
+<img width="1299" height="793" alt="image" src="https://github.com/user-attachments/assets/c9f0818c-70eb-4ae3-969a-694f6ba61c37" />
+
+</details>
+
+<details>
+<summary><b>4. fount-pwsh (命令行助手)</b></summary>
 
 在 PowerShell 终端里召唤角色作为助手，或者纯粹在终端聊天。
 
@@ -136,6 +162,6 @@
 3. 打开任意网页，如果 Tampermonkey 图标变为彩色，说明连接成功。  
    <img width="911" height="593" alt="image" src="https://github.com/user-attachments/assets/3758960e-1cfb-4925-83d8-84f3b38c5728" />
 
----
+</details>
 
 [← 上一页：导入角色](./import-char.md) | [返回主页](../README.md) | [下一页：报错自查 →](./troubleshooting.md)
