@@ -87,9 +87,21 @@
 
 <img width="1373" height="877" alt="image" src="https://github.com/user-attachments/assets/6556c94f-2ab1-46db-8557-21fedb5b6a0d" />
 
-### 在扫码完成后，在你的手机微信上点击“确认连接”即可，之后返回配置页面，fount会自动帮你填写Bot的token和userID，URL留空不用管，随后点击保存配置，启动，即可在手机上和你的角色愉快聊天了！
+### 在扫码完成后，在你的手机微信上点击“确认连接”即可，之后返回配置页面，fount会自动帮你填写Bot的token和userID，URL留空不用管，随后点击保存配置，启动，到此你已经可以在手机上和你的角色愉快聊天了！如果需要修改Bot的头像和名字，请继续往下看
 
 <img width="1299" height="793" alt="image" src="https://github.com/user-attachments/assets/c9f0818c-70eb-4ae3-969a-694f6ba61c37" />
+
+### 修改Bot的头像和名字，先点开Bot的聊天框，右上角的齿轮
+
+<img width="1290" height="463" alt="image" src="https://github.com/user-attachments/assets/e507181c-4b55-48c5-be15-8c798c4d01e0" />
+
+### 再点击右上角三个点
+
+<img width="1290" height="1499" alt="image" src="https://github.com/user-attachments/assets/84b3857f-24e1-4b4d-9f07-c8eb3fee8baa" />
+
+### 在此界面修改备注名和更换头像即可，要注意的是由于微信本身的限制，Bot无法被拉入群聊，只能单人聊天，且功能介绍的位置无法修改
+
+<img width="1290" height="915" alt="image" src="https://github.com/user-attachments/assets/65e272d9-cb88-4d43-8367-d60ddc43d9be" />
 
 </details>
 
