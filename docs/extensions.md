@@ -127,9 +127,10 @@
 <img width="1426" height="285" alt="image" src="https://github.com/user-attachments/assets/03ee6d4f-91bd-4e1a-9f2e-1e4025b7239b" />
 <img width="1451" height="349" alt="image" src="https://github.com/user-attachments/assets/98fef666-e085-4b50-a7b1-47df15aef09e" />
 
----
+</details>
 
-## 4. 浏览器集成
+<details>
+<summary><b>5. 浏览器集成</b></summary>
 
 ### 效果展示
 
