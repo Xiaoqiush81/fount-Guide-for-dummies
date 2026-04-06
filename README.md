@@ -26,7 +26,7 @@ fount 是一个超级自由的、开源的本地 AI 角色扮演平台。
 ### 🛠️ 进阶篇 (我想搞点高级的)
 
 - **[拓展功能](./docs/extensions.md)**
-  - Discord / Telegram 机器人搭建
+  - Discord / WeChat / Telegram 机器人搭建
   - 浏览器集成 (让角色陪你逛网页)
   - 命令行助手 (fount-pwsh)
 - **[报错自查](./docs/troubleshooting.md)**
